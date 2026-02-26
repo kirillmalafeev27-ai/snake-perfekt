@@ -25,12 +25,12 @@ const speedMax = baseSpeed + 10;
 const numFruits = 6;
 
 const C = {
-  red: "#ff4242",     // 0
-  yellow: "#ffe636",  // 1
-  blue: "#4294ff",    // 2
-  purple: "#976bff",  // 3
-  orange: "#ff9d4d",  // 4
-  pink: "#ff69b4",    // 5
+  red: "#ff4242",     // Индекс 0
+  yellow: "#ffe636",  // Индекс 1
+  blue: "#4294ff",    // Индекс 2
+  purple: "#976bff",  // Индекс 3
+  orange: "#ff9d4d",  // Индекс 4
+  pink: "#ff69b4",    // Индекс 5
 };
 
 const baseFruitTypes = [
@@ -42,49 +42,49 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 7 уровней для тренировки дат и порядковых числительных (A1)
+// Уровни (Слова перемешаны в description. Sequence указывает на правильный порядок цветов!)
 const levels = [
   {
-    // 1: Heute ist der erste Oktober. (Nominativ: der + -te)
-    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
+    // 1: Heute ist der erste Oktober.
+    sequence: [C.yellow, C.orange, C.pink, C.red, C.purple],
     snakeSpeed: baseSpeed,
-    description: ["Heute", "ist", "der", "erste", "Oktober.", "ersten "],
+    description: ["erste", "Heute", "ersten (ловушка)", "Oktober.", "ist", "der"],
   },
   {
-    // 2: Ich komme am zweiten März. (Dativ: am + -ten)
-    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
+    // 2: Ich komme am zweiten März.
+    sequence: [C.blue, C.pink, C.red, C.orange, C.yellow],
     snakeSpeed: baseSpeed + 1,
-    description: ["Ich", "komme", "am", "zweiten", "März.", "zweite"],
+    description: ["am", "März.", "Ich", "zweite (ловушка)", "zweiten", "komme"],
   },
   {
-    // 3: Die Party ist am dritten Juli. (Исключение: dritte/dritten)
-    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange, C.pink],
+    // 3: Die Party ist am dritten Juli.
+    sequence: [C.orange, C.blue, C.pink, C.yellow, C.purple, C.red],
     snakeSpeed: baseSpeed + 2,
-    description: ["Die", "Party", "ist", "am", "dritten", "Juli."],
+    description: ["Juli.", "am", "Party", "dritten", "Die", "ist"],
   },
   {
-    // 4: Morgen ist der siebte November. (Nominativ)
-    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
+    // 4: Morgen ist der siebte November.
+    sequence: [C.pink, C.blue, C.orange, C.yellow, C.red],
     snakeSpeed: baseSpeed + 3,
-    description: ["Morgen", "ist", "der", "siebte", "November.", "siebste"],
+    description: ["November.", "siebte", "ist", "siebten (ловушка)", "der", "Morgen"],
   },
   {
-    // 5: Er hat am achten Mai Geburtstag. (Исключение: achte/achten)
-    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange, C.pink],
+    // 5: Er hat am achten Mai Geburtstag.
+    sequence: [C.purple, C.blue, C.pink, C.red, C.orange, C.yellow],
     snakeSpeed: baseSpeed + 4,
-    description: ["Er", "hat", "am", "achten", "Mai", "Geburtstag."],
+    description: ["achten", "Geburtstag.", "hat", "Er", "Mai", "am"],
   },
   {
-    // 6: Wir fliegen am zwanzigsten August. (Числа от 20: -ste / -sten)
-    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
+    // 6: Wir fliegen am zwanzigsten August.
+    sequence: [C.yellow, C.purple, C.pink, C.orange, C.red],
     snakeSpeed: baseSpeed + 5,
-    description: ["Wir", "fliegen", "am", "zwanzigsten", "August.", "zwanzigten"],
+    description: ["August.", "Wir", "zwanzigste (ловушка)", "fliegen", "zwanzigsten", "am"],
   },
   {
-    // 7: Das Neujahr ist am ersten Januar. (Полная фраза)
-    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange, C.pink],
+    // 7: Das Neujahr ist am ersten Januar.
+    sequence: [C.blue, C.orange, C.pink, C.purple, C.red, C.yellow],
     snakeSpeed: baseSpeed + 6,
-    description: ["Das", "Neujahr", "ist", "am", "ersten", "Januar."],
+    description: ["ersten", "Januar.", "Das", "am", "Neujahr", "ist"],
   }
 ];
 
