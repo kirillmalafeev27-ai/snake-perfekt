@@ -25,12 +25,12 @@ const speedMax = baseSpeed + 10;
 const numFruits = 6;
 
 const C = {
-  red: "#ff4242",     // Индекс 0
-  yellow: "#ffe636",  // Индекс 1
-  blue: "#4294ff",    // Индекс 2
-  purple: "#976bff",  // Индекс 3
-  orange: "#ff9d4d",  // Индекс 4
-  pink: "#ff69b4",    // Индекс 5
+  red: "#ff4242",     // 0
+  yellow: "#ffe636",  // 1
+  blue: "#4294ff",    // 2
+  purple: "#976bff",  // 3
+  orange: "#ff9d4d",  // 4
+  pink: "#ff69b4",    // 5
 };
 
 const baseFruitTypes = [
@@ -42,49 +42,49 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// Уровни (Слова перемешаны в description. Sequence указывает на правильный порядок цветов!)
+// 7 уровней для тренировки Perfekt (A1)
 const levels = [
   {
-    // 1: Heute ist der erste Oktober.
-    sequence: [C.yellow, C.orange, C.pink, C.red, C.purple],
+    // 1: Ich habe eine Pizza gegessen. (Глагол haben)
+    sequence: [C.orange, C.yellow, C.purple, C.pink, C.red],
     snakeSpeed: baseSpeed,
-    description: ["erste", "Heute", "ersten", "Oktober.", "ist", "der"],
+    description: ["gegessen.", "habe", "bin (ловушка)", "eine", "Ich", "Pizza"],
   },
   {
-    // 2: Ich komme am zweiten März.
-    sequence: [C.blue, C.pink, C.red, C.orange, C.yellow],
+    // 2: Du bist nach Hause gegangen. (Глагол sein + движение)
+    sequence: [C.yellow, C.pink, C.blue, C.orange, C.red],
     snakeSpeed: baseSpeed + 1,
-    description: ["am", "März.", "Ich", "zweite", "zweiten", "komme"],
+    description: ["gegangen.", "Du", "nach", "hast (ловушка)", "Hause", "bist"],
   },
   {
-    // 3: Die Party ist am dritten Juli.
-    sequence: [C.orange, C.blue, C.pink, C.yellow, C.purple, C.red],
+    // 3: Er hat Fußball gespielt.
+    sequence: [C.purple, C.pink, C.yellow, C.orange],
     snakeSpeed: baseSpeed + 2,
-    description: ["Juli.", "am", "Party", "dritten", "Die", "ist"],
+    description: ["spielen (ловушка)", "Fußball", "ist (ловушка)", "Er", "gespielt.", "hat"],
   },
   {
-    // 4: Morgen ist der siebte November.
-    sequence: [C.pink, C.blue, C.orange, C.yellow, C.red],
+    // 4: Wir haben Wasser getrunken.
+    sequence: [C.pink, C.purple, C.yellow, C.blue],
     snakeSpeed: baseSpeed + 3,
-    description: ["November.", "siebte", "ist", "siebten", "der", "Morgen"],
+    description: ["sind (ловушка)", "Wasser", "getrunken.", "haben", "getrinkt (ловушка)", "Wir"],
   },
   {
-    // 5: Er hat am achten Mai Geburtstag.
-    sequence: [C.purple, C.blue, C.pink, C.red, C.orange, C.yellow],
+    // 5: Ihr seid ins Kino gegangen.
+    sequence: [C.orange, C.yellow, C.pink, C.red, C.purple],
     snakeSpeed: baseSpeed + 4,
-    description: ["achten", "Geburtstag.", "hat", "Er", "Mai", "am"],
+    description: ["Kino", "seid", "habt (ловушка)", "gegangen.", "Ihr", "ins"],
   },
   {
-    // 6: Wir fliegen am zwanzigsten August.
-    sequence: [C.yellow, C.purple, C.pink, C.orange, C.red],
+    // 6: Sie hat Hausaufgaben gemacht.
+    sequence: [C.purple, C.pink, C.red, C.yellow],
     snakeSpeed: baseSpeed + 5,
-    description: ["August.", "Wir", "zwanzigste", "fliegen", "zwanzigsten", "am"],
+    description: ["Hausaufgaben", "gemacht.", "gemachen (ловушка)", "Sie", "ist (ловушка)", "hat"],
   },
   {
-    // 7: Das Neujahr ist am ersten Januar.
-    sequence: [C.blue, C.orange, C.pink, C.purple, C.red, C.yellow],
+    // 7: Wir sind nach Hause geflogen.
+    sequence: [C.blue, C.pink, C.red, C.purple, C.yellow],
     snakeSpeed: baseSpeed + 6,
-    description: ["ersten", "Januar.", "Das", "am", "Neujahr", "ist"],
+    description: ["nach", "geflogen.", "Wir", "Hause", "geflogt (ловушка)", "sind"],
   }
 ];
 
@@ -115,7 +115,7 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "Sammle die Wörter für das Datum! (Собери слова даты!)";
+let statusText = "Perfekt! Sammle die Wörter (haben/sein + Partizip II)";
 let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
@@ -219,8 +219,8 @@ function spawnLimitedFruit(existingFruits) {
   const type = available[randomInRange(0, available.length - 1)];
   return {
     pos: {
-      x: randomInRange(PLAYFIELD.x + 30, PLAYFIELD.x + PLAYFIELD.w - 30),
-      y: randomInRange(PLAYFIELD.y + 30, PLAYFIELD.y + PLAYFIELD.h - 30),
+      x: randomInRange(PLAYFIELD.x + 40, PLAYFIELD.x + PLAYFIELD.w - 40),
+      y: randomInRange(PLAYFIELD.y + 40, PLAYFIELD.y + PLAYFIELD.h - 40),
     },
     type,
   };
@@ -381,7 +381,24 @@ function drawSnake() {
 
 function drawFruits() {
   fruits.forEach((fruit) => {
-    drawGlossyCircle(fruit.pos.x, fruit.pos.y, Math.floor(fruitSize / 2), fruit.type.color);
+    // Рисуем цветной кружок
+    drawGlossyCircle(fruit.pos.x, fruit.pos.y, Math.floor(fruitSize / 2) + 10, fruit.type.color);
+    
+    // Рисуем текст прямо поверх кружка (обрезаем пометку "ловушка" для чистоты визуала)
+    const shortText = fruit.type.description.replace(" (ловушка)", "");
+    
+    ctx.font = "700 13px Manrope, Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    
+    // Обводка текста, чтобы было видно на любом цвете
+    ctx.strokeStyle = "rgba(0, 0, 0, 0.8)";
+    ctx.lineWidth = 3;
+    ctx.strokeText(shortText, fruit.pos.x, fruit.pos.y);
+    
+    // Белая заливка текста
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText(shortText, fruit.pos.x, fruit.pos.y);
   });
 }
 
@@ -488,8 +505,9 @@ function snakeBounceAndWobble() {
 function checkFruitCollision() {
   const newFruits = [];
   fruits.forEach((fruit) => {
+    // Увеличил радиус коллизии, так как фрукты стали чуть больше из-за текста
     const d = Math.hypot(snake[0].x - fruit.pos.x, snake[0].y - fruit.pos.y);
-    if (d < collisionRadius) {
+    if (d < collisionRadius + 10) {
       
       const expectedColor = correctSequence[pickedColors.length];
       
@@ -501,7 +519,7 @@ function checkFruitCollision() {
           nextLevel();
         }
       } else {
-        pickedColors = [];
+        pickedColors = []; 
         setStatus("Falsches Wort! (Не то слово, начни предложение сначала)", 2500);
       }
       
@@ -703,6 +721,11 @@ function roundRect(context, x, y, width, height, radius, fill, stroke) {
 function initGame() {
   fruits = spawnFruits();
   updateHud();
+  bindControls();
+  requestAnimationFrame(frame);
+}
+
+initGame();
   bindControls();
   requestAnimationFrame(frame);
 }
