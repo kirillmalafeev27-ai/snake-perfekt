@@ -48,13 +48,13 @@ const levels = [
     // 1: Heute ist der erste Oktober.
     sequence: [C.yellow, C.orange, C.pink, C.red, C.purple],
     snakeSpeed: baseSpeed,
-    description: ["erste", "Heute", "ersten (ловушка)", "Oktober.", "ist", "der"],
+    description: ["erste", "Heute", "ersten", "Oktober.", "ist", "der"],
   },
   {
     // 2: Ich komme am zweiten März.
     sequence: [C.blue, C.pink, C.red, C.orange, C.yellow],
     snakeSpeed: baseSpeed + 1,
-    description: ["am", "März.", "Ich", "zweite (ловушка)", "zweiten", "komme"],
+    description: ["am", "März.", "Ich", "zweite", "zweiten", "komme"],
   },
   {
     // 3: Die Party ist am dritten Juli.
@@ -66,7 +66,7 @@ const levels = [
     // 4: Morgen ist der siebte November.
     sequence: [C.pink, C.blue, C.orange, C.yellow, C.red],
     snakeSpeed: baseSpeed + 3,
-    description: ["November.", "siebte", "ist", "siebten (ловушка)", "der", "Morgen"],
+    description: ["November.", "siebte", "ist", "siebten", "der", "Morgen"],
   },
   {
     // 5: Er hat am achten Mai Geburtstag.
@@ -78,7 +78,7 @@ const levels = [
     // 6: Wir fliegen am zwanzigsten August.
     sequence: [C.yellow, C.purple, C.pink, C.orange, C.red],
     snakeSpeed: baseSpeed + 5,
-    description: ["August.", "Wir", "zwanzigste (ловушка)", "fliegen", "zwanzigsten", "am"],
+    description: ["August.", "Wir", "zwanzigste", "fliegen", "zwanzigsten", "am"],
   },
   {
     // 7: Das Neujahr ist am ersten Januar.
