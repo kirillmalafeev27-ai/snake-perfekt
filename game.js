@@ -25,58 +25,67 @@ const speedMax = baseSpeed + 10;
 const numFruits = 6;
 
 const C = {
-  red: "#ff4242",
-  yellow: "#ffe636",
-  blue: "#4294ff",
-  purple: "#976bff",
-  orange: "#ff9d4d",
-  pink: "#ff69b4",
+  red: "#ff4242",     // Индекс 0
+  yellow: "#ffe636",  // Индекс 1
+  blue: "#4294ff",    // Индекс 2
+  purple: "#976bff",  // Индекс 3
+  orange: "#ff9d4d",  // Индекс 4
+  pink: "#ff69b4",    // Индекс 5
 };
 
 const baseFruitTypes = [
-  { color: C.red, effect: "grow", description: "er/es/sie" },
-  { color: C.yellow, effect: "speed_up", description: "spiele" },
-  { color: C.blue, effect: "slow_down", description: "du" },
-  { color: C.purple, effect: "extra_life", description: "telefonierst" },
-  { color: C.orange, effect: "invincible", description: "sammelt" },
-  { color: C.pink, effect: "shrink", description: "ich" },
+  { color: C.red, effect: "grow" },
+  { color: C.yellow, effect: "speed_up" },
+  { color: C.blue, effect: "slow_down" },
+  { color: C.purple, effect: "extra_life" },
+  { color: C.orange, effect: "invincible" },
+  { color: C.pink, effect: "shrink" },
 ];
 
+// 7 уровней для тренировки wollen и müssen (A1)
 const levels = [
   {
-    sequence: [C.pink, C.blue, C.yellow, C.purple, C.red, C.orange],
+    // 1: Ich will heute Pizza essen.
+    sequence: [C.red, C.blue, C.orange, C.pink, C.yellow],
     snakeSpeed: baseSpeed,
-    description: ["und", "sehr", "bist", "sportlich", "stark", "Du"],
+    description: ["Ich", "essen.", "will", "muss (лишнее)", "heute", "Pizza"],
   },
   {
-    sequence: [C.orange, C.red, C.purple, C.yellow, C.blue, C.pink],
+    // 2: Du musst Deutsch lernen.
+    sequence: [C.purple, C.orange, C.yellow, C.red],
+    snakeSpeed: baseSpeed + 1,
+    description: ["lernen.", "Deutsch", "kaufen (лишнее)", "Du", "musst", "willst (лишнее)"],
+  },
+  {
+    // 3: Er will ins Kino gehen.
+    sequence: [C.orange, C.yellow, C.red, C.blue, C.purple],
+    snakeSpeed: baseSpeed + 2,
+    description: ["ins", "will", "Kino", "gehen.", "Er", "spielen (лишнее)"],
+  },
+  {
+    // 4: Wir müssen Hausaufgaben machen.
+    sequence: [C.yellow, C.orange, C.blue, C.red],
+    snakeSpeed: baseSpeed + 3,
+    description: ["machen.", "Wir", "Hausaufgaben", "schlafen (лишнее)", "müssen", "wollen (лишнее)"],
+  },
+  {
+    // 5: Ihr wollt am Wochenende Fußball spielen.
+    sequence: [C.orange, C.blue, C.purple, C.pink, C.red, C.yellow],
     snakeSpeed: baseSpeed + 4,
-    description: ["schicken", "chillt", "sie", "ihr", "wir", "grillen"],
+    description: ["Fußball", "spielen.", "wollt", "am", "Ihr", "Wochenende"],
   },
   {
-    sequence: [C.pink, C.blue, C.yellow, C.purple, C.red, C.orange],
-    snakeSpeed: baseSpeed + 8,
-    description: [
-      "mit Tomaten",
-      "ernaehren moechte",
-      "mich frisch und gesund",
-      "koche ich Gerichte",
-      "und Bohnen",
-      "Wenn ich",
-    ],
+    // 6: Sie müssen jetzt nach Hause gehen.
+    sequence: [C.red, C.pink, C.purple, C.orange, C.blue, C.yellow],
+    snakeSpeed: baseSpeed + 5,
+    description: ["Sie", "gehen.", "Hause", "jetzt", "nach", "müssen"],
   },
   {
-    sequence: [C.pink, C.blue, C.yellow, C.purple, C.red, C.orange],
-    snakeSpeed: baseSpeed + 10,
-    description: [
-      "frische Zutaten und",
-      "Pizza backen",
-      "zu Hause gemeinsam",
-      "verwenden wir immer",
-      "vermeiden viel Fett",
-      "Wenn wir",
-    ],
-  },
+    // 7: Ich muss heute viel Deutsch lernen.
+    sequence: [C.pink, C.blue, C.yellow, C.purple, C.orange, C.red],
+    snakeSpeed: baseSpeed + 6,
+    description: ["lernen.", "heute", "muss", "viel", "Deutsch", "Ich"],
+  }
 ];
 
 const fruitLimits = {
@@ -106,8 +115,8 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "Collect fruits in the correct color order.";
-let statusUntil = performance.now() + 2500;
+let statusText = "Sammle die Wörter in der richtigen Reihenfolge!";
+let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
   description: levels[currentLevel].description[i],
@@ -232,7 +241,7 @@ function spawnFruits() {
 function nextLevel() {
   currentLevel += 1;
   if (currentLevel >= levels.length) {
-    setStatus("All levels complete!", 2500);
+    setStatus("Alle Level geschafft! (Вы прошли все уровни!)", 4000);
     running = false;
     return;
   }
@@ -256,10 +265,10 @@ function checkSequence() {
   const ok = pickedColors.every((color, index) => color === correctSequence[index]);
   pickedColors = [];
   if (ok) {
-    setStatus("Great! Sequence complete.");
+    setStatus("Richtig! (Правильно!)");
     nextLevel();
   } else {
-    setStatus("Wrong sequence. Try again.");
+    setStatus("Falsche Reihenfolge. Versuche es nochmal!");
   }
   updateHud();
 }
@@ -334,11 +343,11 @@ function drawScene(now) {
 
   if (now < statusUntil && statusText) {
     ctx.fillStyle = "rgba(0, 0, 0, 0.42)";
-    roundRect(ctx, WORLD_W / 2 - 220, 32, 440, 56, 14, true, false);
+    roundRect(ctx, WORLD_W / 2 - 280, 32, 560, 56, 14, true, false);
     ctx.fillStyle = "#2341a3";
-    roundRect(ctx, WORLD_W / 2 - 224, 28, 440, 56, 14, true, false);
+    roundRect(ctx, WORLD_W / 2 - 284, 28, 560, 56, 14, true, false);
     ctx.fillStyle = "#ffffff";
-    ctx.font = "800 34px Manrope";
+    ctx.font = "800 28px Manrope";
     ctx.textAlign = "center";
     ctx.fillText(statusText, WORLD_W / 2, 65);
     ctx.textAlign = "left";
