@@ -726,8 +726,3 @@ function initGame() {
 }
 
 initGame();
-  bindControls();
-  requestAnimationFrame(frame);
-}
-
-initGame();
