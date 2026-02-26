@@ -42,49 +42,49 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 7 уровней для тренировки Perfekt (A1)
+// 7 уровней для тренировки Dativ (Слова перемешаны в панели!)
 const levels = [
   {
-    // 1: Ich habe eine Pizza gegessen. (Глагол haben)
-    sequence: [C.orange, C.yellow, C.purple, C.pink, C.red],
+    // 1: Ich helfe dir heute.
+    sequence: [C.purple, C.orange, C.red, C.blue],
     snakeSpeed: baseSpeed,
-    description: ["gegessen.", "habe", "bin (ловушка)", "eine", "Ich", "Pizza"],
+    description: ["dir", "dich (ловушка)", "heute.", "Ich", "helfe", "du (ловушка)"],
   },
   {
-    // 2: Du bist nach Hause gegangen. (Глагол sein + движение)
-    sequence: [C.yellow, C.pink, C.blue, C.orange, C.red],
+    // 2: Das Buch gefällt mir.
+    sequence: [C.yellow, C.orange, C.purple, C.red],
     snakeSpeed: baseSpeed + 1,
-    description: ["gegangen.", "Du", "nach", "hast (ловушка)", "Hause", "bist"],
+    description: ["mir.", "Das", "mich (ловушка)", "gefällt", "Buch", "ich (ловушка)"],
   },
   {
-    // 3: Er hat Fußball gespielt.
-    sequence: [C.purple, C.pink, C.yellow, C.orange],
+    // 3: Das Auto gehört dem Mann.
+    sequence: [C.blue, C.pink, C.yellow, C.orange],
     snakeSpeed: baseSpeed + 2,
-    description: ["spielen (ловушка)", "Fußball", "ist (ловушка)", "Er", "gespielt.", "hat"],
+    description: ["den Mann. (ловушка)", "gehört", "Das", "der Mann. (ловушка)", "dem Mann.", "Auto"],
   },
   {
-    // 4: Wir haben Wasser getrunken.
-    sequence: [C.pink, C.purple, C.yellow, C.blue],
+    // 4: Ich antworte der Frau jetzt.
+    sequence: [C.orange, C.red, C.purple, C.blue],
     snakeSpeed: baseSpeed + 3,
-    description: ["sind (ловушка)", "Wasser", "getrunken.", "haben", "getrinkt (ловушка)", "Wir"],
+    description: ["antworte", "die Frau (ловушка)", "jetzt.", "der Frau", "Ich", "dem Frau (ловушка)"],
   },
   {
-    // 5: Ihr seid ins Kino gegangen.
-    sequence: [C.orange, C.yellow, C.pink, C.red, C.purple],
+    // 5: Die Pizza schmeckt den Kindern.
+    sequence: [C.purple, C.red, C.blue, C.pink],
     snakeSpeed: baseSpeed + 4,
-    description: ["Kino", "seid", "habt (ловушка)", "gegangen.", "Ihr", "ins"],
+    description: ["Pizza", "dem Kind. (ловушка)", "schmeckt", "Die", "die Kinder. (ловушка)", "den Kindern."],
   },
   {
-    // 6: Sie hat Hausaufgaben gemacht.
-    sequence: [C.purple, C.pink, C.red, C.yellow],
+    // 6: Wir danken Ihnen sehr.
+    sequence: [C.blue, C.pink, C.yellow, C.purple],
     snakeSpeed: baseSpeed + 5,
-    description: ["Hausaufgaben", "gemacht.", "gemachen (ловушка)", "Sie", "ist (ловушка)", "hat"],
+    description: ["ihr (ловушка)", "Ihnen", "Wir", "sehr.", "Sie (ловушка)", "danken"],
   },
   {
-    // 7: Wir sind nach Hause geflogen.
-    sequence: [C.blue, C.pink, C.red, C.purple, C.yellow],
+    // 7: Wie geht es dir heute?
+    sequence: [C.purple, C.red, C.orange, C.pink, C.yellow],
     snakeSpeed: baseSpeed + 6,
-    description: ["nach", "geflogen.", "Wir", "Hause", "geflogt (ловушка)", "sind"],
+    description: ["geht", "heute?", "dich (ловушка)", "Wie", "es", "dir"],
   }
 ];
 
@@ -115,7 +115,7 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "Perfekt! Sammle die Wörter (haben/sein + Partizip II)";
+let statusText = "Sammle die Wörter im Dativ! (Собери слова!)";
 let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
@@ -219,8 +219,8 @@ function spawnLimitedFruit(existingFruits) {
   const type = available[randomInRange(0, available.length - 1)];
   return {
     pos: {
-      x: randomInRange(PLAYFIELD.x + 40, PLAYFIELD.x + PLAYFIELD.w - 40),
-      y: randomInRange(PLAYFIELD.y + 40, PLAYFIELD.y + PLAYFIELD.h - 40),
+      x: randomInRange(PLAYFIELD.x + 30, PLAYFIELD.x + PLAYFIELD.w - 30),
+      y: randomInRange(PLAYFIELD.y + 30, PLAYFIELD.y + PLAYFIELD.h - 30),
     },
     type,
   };
@@ -381,24 +381,7 @@ function drawSnake() {
 
 function drawFruits() {
   fruits.forEach((fruit) => {
-    // Рисуем цветной кружок
-    drawGlossyCircle(fruit.pos.x, fruit.pos.y, Math.floor(fruitSize / 2) + 10, fruit.type.color);
-    
-    // Рисуем текст прямо поверх кружка (обрезаем пометку "ловушка" для чистоты визуала)
-    const shortText = fruit.type.description.replace(" (ловушка)", "");
-    
-    ctx.font = "700 13px Manrope, Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    
-    // Обводка текста, чтобы было видно на любом цвете
-    ctx.strokeStyle = "rgba(0, 0, 0, 0.8)";
-    ctx.lineWidth = 3;
-    ctx.strokeText(shortText, fruit.pos.x, fruit.pos.y);
-    
-    // Белая заливка текста
-    ctx.fillStyle = "#ffffff";
-    ctx.fillText(shortText, fruit.pos.x, fruit.pos.y);
+    drawGlossyCircle(fruit.pos.x, fruit.pos.y, Math.floor(fruitSize / 2), fruit.type.color);
   });
 }
 
@@ -505,10 +488,10 @@ function snakeBounceAndWobble() {
 function checkFruitCollision() {
   const newFruits = [];
   fruits.forEach((fruit) => {
-    // Увеличил радиус коллизии, так как фрукты стали чуть больше из-за текста
     const d = Math.hypot(snake[0].x - fruit.pos.x, snake[0].y - fruit.pos.y);
-    if (d < collisionRadius + 10) {
+    if (d < collisionRadius) {
       
+      // Логика мгновенной проверки (строгий порядок слов)
       const expectedColor = correctSequence[pickedColors.length];
       
       if (fruit.type.color === expectedColor) {
@@ -519,7 +502,8 @@ function checkFruitCollision() {
           nextLevel();
         }
       } else {
-        pickedColors = []; 
+        // Игрок съел не то слово или нарушил порядок!
+        pickedColors = []; // Сбрасываем прогресс текущего предложения
         setStatus("Falsches Wort! (Не то слово, начни предложение сначала)", 2500);
       }
       
