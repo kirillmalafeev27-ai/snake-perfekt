@@ -25,12 +25,12 @@ const speedMax = baseSpeed + 10;
 const numFruits = 6;
 
 const C = {
-  red: "#ff4242",     // Индекс 0
-  yellow: "#ffe636",  // Индекс 1
-  blue: "#4294ff",    // Индекс 2
-  purple: "#976bff",  // Индекс 3
-  orange: "#ff9d4d",  // Индекс 4
-  pink: "#ff69b4",    // Индекс 5
+  red: "#ff4242",     // 0
+  yellow: "#ffe636",  // 1
+  blue: "#4294ff",    // 2
+  purple: "#976bff",  // 3
+  orange: "#ff9d4d",  // 4
+  pink: "#ff69b4",    // 5
 };
 
 const baseFruitTypes = [
@@ -42,49 +42,49 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 7 уровней для тренировки wollen и müssen (A1)
+// 7 уровней для тренировки дат и порядковых числительных (A1)
 const levels = [
   {
-    // 1: Ich will heute Pizza essen.
-    sequence: [C.red, C.blue, C.orange, C.pink, C.yellow],
+    // 1: Heute ist der erste Oktober. (Nominativ: der + -te)
+    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
     snakeSpeed: baseSpeed,
-    description: ["Ich", "essen.", "will", "muss (лишнее)", "heute", "Pizza"],
+    description: ["Heute", "ist", "der", "erste", "Oktober.", "ersten "],
   },
   {
-    // 2: Du musst Deutsch lernen.
-    sequence: [C.purple, C.orange, C.yellow, C.red],
+    // 2: Ich komme am zweiten März. (Dativ: am + -ten)
+    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
     snakeSpeed: baseSpeed + 1,
-    description: ["lernen.", "Deutsch", "kaufen (лишнее)", "Du", "musst", "willst (лишнее)"],
+    description: ["Ich", "komme", "am", "zweiten", "März.", "zweite"],
   },
   {
-    // 3: Er will ins Kino gehen.
-    sequence: [C.orange, C.yellow, C.red, C.blue, C.purple],
+    // 3: Die Party ist am dritten Juli. (Исключение: dritte/dritten)
+    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange, C.pink],
     snakeSpeed: baseSpeed + 2,
-    description: ["ins", "will", "Kino", "gehen.", "Er", "spielen (лишнее)"],
+    description: ["Die", "Party", "ist", "am", "dritten", "Juli."],
   },
   {
-    // 4: Wir müssen Hausaufgaben machen.
-    sequence: [C.yellow, C.orange, C.blue, C.red],
+    // 4: Morgen ist der siebte November. (Nominativ)
+    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
     snakeSpeed: baseSpeed + 3,
-    description: ["machen.", "Wir", "Hausaufgaben", "schlafen (лишнее)", "müssen", "wollen (лишнее)"],
+    description: ["Morgen", "ist", "der", "siebte", "November.", "siebste"],
   },
   {
-    // 5: Ihr wollt am Wochenende Fußball spielen.
-    sequence: [C.orange, C.blue, C.purple, C.pink, C.red, C.yellow],
+    // 5: Er hat am achten Mai Geburtstag. (Исключение: achte/achten)
+    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange, C.pink],
     snakeSpeed: baseSpeed + 4,
-    description: ["Fußball", "spielen.", "wollt", "am", "Ihr", "Wochenende"],
+    description: ["Er", "hat", "am", "achten", "Mai", "Geburtstag."],
   },
   {
-    // 6: Sie müssen jetzt nach Hause gehen.
-    sequence: [C.red, C.pink, C.purple, C.orange, C.blue, C.yellow],
+    // 6: Wir fliegen am zwanzigsten August. (Числа от 20: -ste / -sten)
+    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange],
     snakeSpeed: baseSpeed + 5,
-    description: ["Sie", "gehen.", "Hause", "jetzt", "nach", "müssen"],
+    description: ["Wir", "fliegen", "am", "zwanzigsten", "August.", "zwanzigten"],
   },
   {
-    // 7: Ich muss heute viel Deutsch lernen.
-    sequence: [C.pink, C.blue, C.yellow, C.purple, C.orange, C.red],
+    // 7: Das Neujahr ist am ersten Januar. (Полная фраза)
+    sequence: [C.red, C.yellow, C.blue, C.purple, C.orange, C.pink],
     snakeSpeed: baseSpeed + 6,
-    description: ["lernen.", "heute", "muss", "viel", "Deutsch", "Ich"],
+    description: ["Das", "Neujahr", "ist", "am", "ersten", "Januar."],
   }
 ];
 
@@ -115,7 +115,7 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "Sammle die Wörter in der richtigen Reihenfolge!";
+let statusText = "Sammle die Wörter für das Datum! (Собери слова даты!)";
 let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
@@ -257,22 +257,6 @@ function nextLevel() {
   setStatus(`Level ${currentLevel + 1}`, 1600);
 }
 
-function checkSequence() {
-  const done = pickedColors.length === correctSequence.length;
-  if (!done) {
-    return;
-  }
-  const ok = pickedColors.every((color, index) => color === correctSequence[index]);
-  pickedColors = [];
-  if (ok) {
-    setStatus("Richtig! (Правильно!)");
-    nextLevel();
-  } else {
-    setStatus("Falsche Reihenfolge. Versuche es nochmal!");
-  }
-  updateHud();
-}
-
 function drawGlossyCircle(x, y, radius, color) {
   ctx.fillStyle = "rgba(0, 0, 0, 0.34)";
   ctx.beginPath();
@@ -343,9 +327,9 @@ function drawScene(now) {
 
   if (now < statusUntil && statusText) {
     ctx.fillStyle = "rgba(0, 0, 0, 0.42)";
-    roundRect(ctx, WORLD_W / 2 - 280, 32, 560, 56, 14, true, false);
+    roundRect(ctx, WORLD_W / 2 - 320, 32, 640, 56, 14, true, false);
     ctx.fillStyle = "#2341a3";
-    roundRect(ctx, WORLD_W / 2 - 284, 28, 560, 56, 14, true, false);
+    roundRect(ctx, WORLD_W / 2 - 324, 28, 640, 56, 14, true, false);
     ctx.fillStyle = "#ffffff";
     ctx.font = "800 28px Manrope";
     ctx.textAlign = "center";
@@ -506,8 +490,23 @@ function checkFruitCollision() {
   fruits.forEach((fruit) => {
     const d = Math.hypot(snake[0].x - fruit.pos.x, snake[0].y - fruit.pos.y);
     if (d < collisionRadius) {
-      pickedColors.push(fruit.type.color);
-      checkSequence();
+      
+      const expectedColor = correctSequence[pickedColors.length];
+      
+      if (fruit.type.color === expectedColor) {
+        pickedColors.push(fruit.type.color);
+        
+        if (pickedColors.length === correctSequence.length) {
+          setStatus("Richtig! (Отлично!)");
+          nextLevel();
+        }
+      } else {
+        pickedColors = [];
+        setStatus("Falsches Wort! (Не то слово, начни предложение сначала)", 2500);
+      }
+      
+      updateHud();
+
       const effect = fruit.type.effect;
       if (effect === "grow") {
         snakeLength += 4;
