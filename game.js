@@ -42,49 +42,50 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 7 уровней для тренировки Perfekt (A1)
+// 7 уровней для тренировки Reflexivpronomen (A2.1)
+// В каждом: 4 правильных слова и 2 обманки (без подписи "ловушка")
 const levels = [
   {
-    // 1: Ich habe eine Pizza gegessen. (Глагол haben)
-    sequence: [C.orange, C.yellow, C.purple, C.pink, C.red],
+    // 1: Ich freue mich sehr.
+    sequence: [C.orange, C.red, C.blue, C.purple],
     snakeSpeed: baseSpeed,
-    description: ["gegessen.", "habe", "bin (ловушка)", "eine", "Ich", "Pizza"],
+    description: ["freue", "sich", "mich", "sehr.", "Ich", "dich"], 
   },
   {
-    // 2: Du bist nach Hause gegangen. (Глагол sein + движение)
-    sequence: [C.yellow, C.pink, C.blue, C.orange, C.red],
+    // 2: Du wäschst dich heute.
+    sequence: [C.blue, C.orange, C.red, C.yellow],
     snakeSpeed: baseSpeed + 1,
-    description: ["gegangen.", "Du", "nach", "hast (ловушка)", "Hause", "bist"],
+    description: ["dich", "heute.", "Du", "mich", "wäschst", "sich"],
   },
   {
-    // 3: Er hat Fußball gespielt.
-    sequence: [C.purple, C.pink, C.yellow, C.orange],
+    // 3: Er rasiert sich jetzt.
+    sequence: [C.yellow, C.purple, C.red, C.pink],
     snakeSpeed: baseSpeed + 2,
-    description: ["spielen (ловушка)", "Fußball", "ist (ловушка)", "Er", "gespielt.", "hat"],
+    description: ["sich", "Er", "mich", "rasiert", "ihn", "jetzt."],
   },
   {
-    // 4: Wir haben Wasser getrunken.
-    sequence: [C.pink, C.purple, C.yellow, C.blue],
+    // 4: Wir ruhen uns aus.
+    sequence: [C.purple, C.pink, C.yellow, C.red],
     snakeSpeed: baseSpeed + 3,
-    description: ["sind (ловушка)", "Wasser", "getrunken.", "haben", "getrinkt (ловушка)", "Wir"],
+    description: ["aus.", "uns", "sich", "Wir", "euch", "ruhen"],
   },
   {
-    // 5: Ihr seid ins Kino gegangen.
-    sequence: [C.orange, C.yellow, C.pink, C.red, C.purple],
+    // 5: Ihr beeilt euch bitte.
+    sequence: [C.yellow, C.red, C.blue, C.orange],
     snakeSpeed: baseSpeed + 4,
-    description: ["Kino", "seid", "habt (ловушка)", "gegangen.", "Ihr", "ins"],
+    description: ["beeilt", "Ihr", "euch", "uns", "bitte.", "sich"],
   },
   {
-    // 6: Sie hat Hausaufgaben gemacht.
-    sequence: [C.purple, C.pink, C.red, C.yellow],
+    // 6: Sie ärgern sich oft.
+    sequence: [C.purple, C.red, C.pink, C.blue],
     snakeSpeed: baseSpeed + 5,
-    description: ["Hausaufgaben", "gemacht.", "gemachen (ловушка)", "Sie", "ist (ловушка)", "hat"],
+    description: ["ärgern", "euch", "oft.", "Sie", "ihnen", "sich"],
   },
   {
-    // 7: Wir sind nach Hause geflogen.
-    sequence: [C.blue, C.pink, C.red, C.purple, C.yellow],
+    // 7: Ich treffe mich morgen.
+    sequence: [C.pink, C.red, C.yellow, C.purple],
     snakeSpeed: baseSpeed + 6,
-    description: ["nach", "geflogen.", "Wir", "Hause", "geflogt (ловушка)", "sind"],
+    description: ["treffe", "mich", "mir", "morgen.", "sich", "Ich"],
   }
 ];
 
@@ -115,7 +116,7 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "Perfekt! Sammle die Wörter (haben/sein + Partizip II)";
+let statusText = "A2.1: Reflexivpronomen! (Возвратные глаголы)";
 let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
@@ -248,10 +249,17 @@ function nextLevel() {
   const level = levels[currentLevel];
   correctSequence = [...level.sequence];
   snakeSpeed = clamp(level.snakeSpeed, speedMin, speedMax);
+  
+  // Обновляем типы фруктов (с новыми словами)
   fruitTypes = baseFruitTypes.map((item, i) => ({
     ...item,
     description: level.description[i],
   }));
+
+  // ВАЖНОЕ ИСПРАВЛЕНИЕ: Мгновенно очищаем старые фрукты и спавним новые!
+  fruits = [];
+  fruits = spawnFruits();
+
   updateVelocityFromDirection();
   updateHud();
   setStatus(`Level ${currentLevel + 1}`, 1600);
@@ -384,8 +392,8 @@ function drawFruits() {
     // Рисуем цветной кружок
     drawGlossyCircle(fruit.pos.x, fruit.pos.y, Math.floor(fruitSize / 2) + 10, fruit.type.color);
     
-    // Рисуем текст прямо поверх кружка (обрезаем пометку "ловушка" для чистоты визуала)
-    const shortText = fruit.type.description.replace(" (ловушка)", "");
+    // Рисуем текст прямо поверх кружка (мы убрали "ловушка", так что выводим просто текст)
+    const text = fruit.type.description;
     
     ctx.font = "700 13px Manrope, Arial";
     ctx.textAlign = "center";
@@ -394,11 +402,11 @@ function drawFruits() {
     // Обводка текста, чтобы было видно на любом цвете
     ctx.strokeStyle = "rgba(0, 0, 0, 0.8)";
     ctx.lineWidth = 3;
-    ctx.strokeText(shortText, fruit.pos.x, fruit.pos.y);
+    ctx.strokeText(text, fruit.pos.x, fruit.pos.y);
     
     // Белая заливка текста
     ctx.fillStyle = "#ffffff";
-    ctx.fillText(shortText, fruit.pos.x, fruit.pos.y);
+    ctx.fillText(text, fruit.pos.x, fruit.pos.y);
   });
 }
 
@@ -505,7 +513,6 @@ function snakeBounceAndWobble() {
 function checkFruitCollision() {
   const newFruits = [];
   fruits.forEach((fruit) => {
-    // Увеличил радиус коллизии, так как фрукты стали чуть больше из-за текста
     const d = Math.hypot(snake[0].x - fruit.pos.x, snake[0].y - fruit.pos.y);
     if (d < collisionRadius + 10) {
       
@@ -520,7 +527,7 @@ function checkFruitCollision() {
         }
       } else {
         pickedColors = []; 
-        setStatus("Falsches Wort! (Не то слово, начни предложение сначала)", 2500);
+        setStatus("Falsches Wort! (Не то слово, начни сначала)", 2500);
       }
       
       updateHud();
