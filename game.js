@@ -42,50 +42,50 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 7 уровней для тренировки Reflexivpronomen (A2.1)
-// В каждом: 4 правильных слова и 2 обманки (без подписи "ловушка")
+// 7 уровней для тренировки Trennbare Verben (A1)
+// В каждом: 4 правильных слова и 2 обманки
 const levels = [
   {
-    // 1: Ich freue mich sehr.
-    sequence: [C.orange, C.red, C.blue, C.purple],
-    snakeSpeed: baseSpeed,
-    description: ["freue", "sich", "mich", "sehr.", "Ich", "dich"], 
-  },
-  {
-    // 2: Du wäschst dich heute.
+    // 1: Ich räume heute auf. (aufräumen)
     sequence: [C.blue, C.orange, C.red, C.yellow],
+    snakeSpeed: baseSpeed,
+    description: ["heute", "auf.", "Ich", "aufräume", "räume", "zu"], 
+  },
+  {
+    // 2: Wir kaufen viel ein. (einkaufen)
+    sequence: [C.red, C.pink, C.yellow, C.purple],
     snakeSpeed: baseSpeed + 1,
-    description: ["dich", "heute.", "Du", "mich", "wäschst", "sich"],
+    description: ["Wir", "viel", "aus", "ein.", "einkaufen", "kaufen"],
   },
   {
-    // 3: Er rasiert sich jetzt.
-    sequence: [C.yellow, C.purple, C.red, C.pink],
+    // 3: Der Film fängt an. (anfangen)
+    sequence: [C.blue, C.pink, C.yellow, C.purple],
     snakeSpeed: baseSpeed + 2,
-    description: ["sich", "Er", "mich", "rasiert", "ihn", "jetzt."],
+    description: ["anfangen", "fängt", "Der", "an.", "fangt", "Film"],
   },
   {
-    // 4: Wir ruhen uns aus.
-    sequence: [C.purple, C.pink, C.yellow, C.red],
+    // 4: Er ruft mich an. (anrufen)
+    sequence: [C.purple, C.pink, C.red, C.blue],
     snakeSpeed: baseSpeed + 3,
-    description: ["aus.", "uns", "sich", "Wir", "euch", "ruhen"],
+    description: ["mich", "anruft", "an.", "Er", "auf", "ruft"],
   },
   {
-    // 5: Ihr beeilt euch bitte.
-    sequence: [C.yellow, C.red, C.blue, C.orange],
+    // 5: Ich lade dich ein. (einladen)
+    sequence: [C.yellow, C.orange, C.purple, C.red],
     snakeSpeed: baseSpeed + 4,
-    description: ["beeilt", "Ihr", "euch", "uns", "bitte.", "sich"],
+    description: ["ein.", "Ich", "ladet", "dich", "lade", "einlade"],
   },
   {
-    // 6: Sie ärgern sich oft.
-    sequence: [C.purple, C.red, C.pink, C.blue],
+    // 6: Wir sehen abends fern. (fernsehen)
+    sequence: [C.blue, C.pink, C.yellow, C.orange],
     snakeSpeed: baseSpeed + 5,
-    description: ["ärgern", "euch", "oft.", "Sie", "ihnen", "sich"],
+    description: ["fernsehen", "abends", "Wir", "seht", "fern.", "sehen"],
   },
   {
-    // 7: Ich treffe mich morgen.
-    sequence: [C.pink, C.red, C.yellow, C.purple],
+    // 7: Sie gehen heute aus. (ausgehen)
+    sequence: [C.purple, C.pink, C.red, C.blue],
     snakeSpeed: baseSpeed + 6,
-    description: ["treffe", "mich", "mir", "morgen.", "sich", "Ich"],
+    description: ["heute", "ausgehen", "aus.", "Sie", "an", "gehen"],
   }
 ];
 
@@ -116,7 +116,7 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "A2.1: Reflexivpronomen! (Возвратные глаголы)";
+let statusText = "A1: Trennbare Verben (Отделяемые приставки)";
 let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
@@ -256,7 +256,7 @@ function nextLevel() {
     description: level.description[i],
   }));
 
-  // ВАЖНОЕ ИСПРАВЛЕНИЕ: Мгновенно очищаем старые фрукты и спавним новые!
+  // Мгновенно очищаем старые фрукты и спавним новые!
   fruits = [];
   fruits = spawnFruits();
 
@@ -392,7 +392,7 @@ function drawFruits() {
     // Рисуем цветной кружок
     drawGlossyCircle(fruit.pos.x, fruit.pos.y, Math.floor(fruitSize / 2) + 10, fruit.type.color);
     
-    // Рисуем текст прямо поверх кружка (мы убрали "ловушка", так что выводим просто текст)
+    // Рисуем текст прямо поверх кружка
     const text = fruit.type.description;
     
     ctx.font = "700 13px Manrope, Arial";
@@ -731,5 +731,7 @@ function initGame() {
   bindControls();
   requestAnimationFrame(frame);
 }
+
+initGame();
 
 initGame();
