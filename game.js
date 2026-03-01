@@ -42,49 +42,50 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 7 уровней для тренировки Perfekt (A1)
+// 7 уровней: Dativ vs Akkusativ (Personalpronomen)
+// В каждом: 4 правильных слова и 2 обманки
 const levels = [
   {
-    // 1: Ich habe eine Pizza gegessen. (Глагол haben)
-    sequence: [C.orange, C.yellow, C.purple, C.pink, C.red],
+    // 1: Das gefällt mir sehr. (Dativ)
+    sequence: [C.blue, C.red, C.pink, C.orange],
     snakeSpeed: baseSpeed,
-    description: ["gegessen.", "habe", "bin", "eine", "Ich", "Pizza"],
+    description: ["gefällt", "mich", "Das", "ich", "sehr.", "mir"], 
   },
   {
-    // 2: Du bist nach Hause gegangen. (Глагол sein + движение)
-    sequence: [C.yellow, C.pink, C.blue, C.orange, C.red],
+    // 2: Ich sehe dich dort. (Akkusativ)
+    sequence: [C.purple, C.blue, C.red, C.orange],
     snakeSpeed: baseSpeed + 1,
-    description: ["gegangen.", "Du", "nach", "hast", "Hause", "bist"],
+    description: ["dich", "dir", "sehe", "Ich", "dort.", "du"],
   },
   {
-    // 3: Er hat Fußball gespielt.
-    sequence: [C.purple, C.pink, C.yellow, C.orange],
+    // 3: Das Hemd passt ihm. (Dativ)
+    sequence: [C.pink, C.yellow, C.purple, C.orange],
     snakeSpeed: baseSpeed + 2,
-    description: ["spielen", "Fußball", "ist", "Er", "gespielt.", "hat"],
+    description: ["ihn", "Hemd", "er", "passt", "ihm.", "Das"],
   },
   {
-    // 4: Wir haben Wasser getrunken.
-    sequence: [C.pink, C.purple, C.yellow, C.blue],
+    // 4: Er ruft mich an. (Akkusativ)
+    sequence: [C.red, C.purple, C.yellow, C.pink],
     snakeSpeed: baseSpeed + 3,
-    description: ["sind", "Wasser", "getrunken.", "haben", "getrinkt", "Wir"],
+    description: ["Er", "mich", "mir", "ruft", "ich", "an."],
   },
   {
-    // 5: Ihr seid ins Kino gegangen.
-    sequence: [C.orange, C.yellow, C.pink, C.red, C.purple],
+    // 5: Wir helfen ihr heute. (Dativ)
+    sequence: [C.purple, C.yellow, C.blue, C.orange],
     snakeSpeed: baseSpeed + 4,
-    description: ["Kino", "seid", "habt", "gegangen.", "Ihr", "ins"],
+    description: ["sie", "helfen", "ihr", "Wir", "heute.", "ihre"],
   },
   {
-    // 6: Sie hat Hausaufgaben gemacht.
-    sequence: [C.purple, C.pink, C.red, C.yellow],
+    // 6: Ich frage ihn jetzt. (Akkusativ)
+    sequence: [C.pink, C.purple, C.red, C.blue],
     snakeSpeed: baseSpeed + 5,
-    description: ["Hausaufgaben", "gemacht.", "gemachen", "Sie", "ist", "hat"],
+    description: ["ihn", "ihm", "jetzt.", "frage", "er", "Ich"],
   },
   {
-    // 7: Wir sind nach Hause geflogen.
-    sequence: [C.blue, C.pink, C.red, C.purple, C.yellow],
+    // 7: Er gibt mir Geld. (Dativ + Akkusativ объект)
+    sequence: [C.blue, C.orange, C.red, C.purple],
     snakeSpeed: baseSpeed + 6,
-    description: ["nach", "geflogen.", "Wir", "Hause", "geflogt", "sind"],
+    description: ["mir", "mich", "Er", "Geld.", "gibt", "ich"],
   }
 ];
 
@@ -115,7 +116,7 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "Perfekt! Sammle die Wörter (haben/sein + Partizip II)";
+let statusText = "Pronomen: mir oder mich? ihm oder ihn?";
 let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
@@ -248,10 +249,15 @@ function nextLevel() {
   const level = levels[currentLevel];
   correctSequence = [...level.sequence];
   snakeSpeed = clamp(level.snakeSpeed, speedMin, speedMax);
+  
   fruitTypes = baseFruitTypes.map((item, i) => ({
     ...item,
     description: level.description[i],
   }));
+
+  fruits = [];
+  fruits = spawnFruits();
+
   updateVelocityFromDirection();
   updateHud();
   setStatus(`Level ${currentLevel + 1}`, 1600);
@@ -381,24 +387,20 @@ function drawSnake() {
 
 function drawFruits() {
   fruits.forEach((fruit) => {
-    // Рисуем цветной кружок
     drawGlossyCircle(fruit.pos.x, fruit.pos.y, Math.floor(fruitSize / 2) + 10, fruit.type.color);
     
-    // Рисуем текст прямо поверх кружка (обрезаем пометку "ловушка" для чистоты визуала)
-    const shortText = fruit.type.description.replace(" (ловушка)", "");
+    const text = fruit.type.description;
     
     ctx.font = "700 13px Manrope, Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     
-    // Обводка текста, чтобы было видно на любом цвете
     ctx.strokeStyle = "rgba(0, 0, 0, 0.8)";
     ctx.lineWidth = 3;
-    ctx.strokeText(shortText, fruit.pos.x, fruit.pos.y);
+    ctx.strokeText(text, fruit.pos.x, fruit.pos.y);
     
-    // Белая заливка текста
     ctx.fillStyle = "#ffffff";
-    ctx.fillText(shortText, fruit.pos.x, fruit.pos.y);
+    ctx.fillText(text, fruit.pos.x, fruit.pos.y);
   });
 }
 
@@ -505,7 +507,6 @@ function snakeBounceAndWobble() {
 function checkFruitCollision() {
   const newFruits = [];
   fruits.forEach((fruit) => {
-    // Увеличил радиус коллизии, так как фрукты стали чуть больше из-за текста
     const d = Math.hypot(snake[0].x - fruit.pos.x, snake[0].y - fruit.pos.y);
     if (d < collisionRadius + 10) {
       
@@ -520,7 +521,7 @@ function checkFruitCollision() {
         }
       } else {
         pickedColors = []; 
-        setStatus("Falsches Wort! (Не то слово, начни предложение сначала)", 2500);
+        setStatus("Falsches Wort! (Не то слово, начни сначала)", 2500);
       }
       
       updateHud();
