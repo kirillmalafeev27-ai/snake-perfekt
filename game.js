@@ -44,53 +44,53 @@ const baseFruitTypes = [
 
 const levels = [
   {
-    // 1: Ich gehe raus, um mit Freunden zu spielen.
-    // Правильно: um (blue) -> mit Freunden (orange) -> zu (pink) -> spielen. (red)
-    sequence: [C.blue, C.orange, C.pink, C.red],
+    // 1: Ich war gestern im Kino. (Präteritum)
+    // Правильно: Ich (orange) -> war (blue) -> gestern (purple) -> im Kino. (red)
+    sequence: [C.orange, C.blue, C.purple, C.red],
     snakeSpeed: baseSpeed,
-    description: ["spielen.", "damit", "um", "spiele.", "mit Freunden", "zu"], 
+    description: ["im Kino.", "habe", "war", "gestern", "Ich", "bin"], 
   },
   {
-    // 2: Ich rufe laut, damit du mich hörst.
-    // Правильно: damit (orange) -> du (pink) -> mich (blue) -> hörst. (yellow)
-    sequence: [C.orange, C.pink, C.blue, C.yellow],
+    // 2: Du bist nach Hause gegangen. (Perfekt)
+    // Правильно: Du (blue) -> bist (purple) -> nach Hause (pink) -> gegangen. (red)
+    sequence: [C.blue, C.purple, C.pink, C.red],
     snakeSpeed: baseSpeed + 1,
-    description: ["zu", "hörst.", "mich", "um", "damit", "du"],
+    description: ["gegangen.", "warst", "Du", "bist", "hast", "nach Hause"],
   },
   {
-    // 3: Er übt viel, um besser zu werden.
-    // Правильно: um (orange) -> besser (pink) -> zu (purple) -> werden. (red)
-    sequence: [C.orange, C.pink, C.purple, C.red],
+    // 3: Wir waren im Sommer am Meer. (Präteritum)
+    // Правильно: Wir (yellow) -> waren (pink) -> im Sommer (orange) -> am Meer. (blue)
+    sequence: [C.yellow, C.pink, C.orange, C.blue],
     snakeSpeed: baseSpeed + 2,
-    description: ["werden.", "damit", "wird.", "zu", "um", "besser"],
+    description: ["haben", "Wir", "am Meer.", "sind", "im Sommer", "waren"],
   },
   {
-    // 4: Mama hilft mir, damit ich schneller fertig bin.
-    // Правильно: damit (yellow) -> ich (purple) -> schneller (blue) -> fertig bin. (orange)
-    sequence: [C.yellow, C.purple, C.blue, C.orange],
+    // 4: Er hat seine Hausaufgaben gemacht. (Perfekt)
+    // Правильно: Er (blue) -> hat (pink) -> seine Hausaufgaben (purple) -> gemacht. (red)
+    sequence: [C.blue, C.pink, C.purple, C.red],
     snakeSpeed: baseSpeed + 3,
-    description: ["zu", "damit", "schneller", "ich", "fertig bin.", "um"],
+    description: ["gemacht.", "war", "Er", "seine Hausaufgaben", "ist", "hat"],
   },
   {
-    // 5: Wir rennen, um den Bus zu bekommen.
-    // Правильно: um (pink) -> den Bus (yellow) -> zu (purple) -> bekommen. (red)
-    sequence: [C.pink, C.yellow, C.purple, C.red],
+    // 5: Wo warst du am Wochenende? (Präteritum)
+    // Правильно: Wo (yellow) -> warst (pink) -> du (purple) -> am Wochenende? (red)
+    sequence: [C.yellow, C.pink, C.purple, C.red],
     snakeSpeed: baseSpeed + 4,
-    description: ["bekommen.", "den Bus", "damit", "zu", "wir bekommen.", "um"],
+    description: ["am Wochenende?", "Wo", "hast", "du", "bist", "warst"],
   },
   {
-    // 6: Papa gibt mir Geld, damit ich Eis kaufe.
-    // Правильно: damit (purple) -> ich (yellow) -> Eis (pink) -> kaufe. (red)
-    sequence: [C.purple, C.yellow, C.pink, C.red],
+    // 6: Ihr habt gestern Fußball gespielt. (Perfekt)
+    // Правильно: Ihr (blue) -> habt (orange) -> gestern (purple) -> gespielt. (red)
+    sequence: [C.blue, C.orange, C.purple, C.red],
     snakeSpeed: baseSpeed + 5,
-    description: ["kaufe.", "ich", "zu", "damit", "um", "Eis"],
+    description: ["gespielt.", "wart", "Ihr", "gestern", "habt", "seid"],
   },
   {
-    // 7: Sie liest Bücher, um schlau zu bleiben.
-    // Правильно: um (blue) -> schlau (yellow) -> zu (pink) -> bleiben. (orange)
-    sequence: [C.blue, C.yellow, C.pink, C.orange],
+    // 7: Das Wetter war sehr schön. (Präteritum)
+    // Правильно: Das Wetter (pink) -> war (blue) -> sehr (purple) -> schön. (red)
+    sequence: [C.pink, C.blue, C.purple, C.red],
     snakeSpeed: baseSpeed + 6,
-    description: ["bleibt.", "schlau", "um", "damit", "bleiben.", "zu"],
+    description: ["schön.", "hat", "war", "sehr", "ist", "Das Wetter"],
   }
 ];
 
