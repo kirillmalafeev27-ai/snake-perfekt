@@ -42,74 +42,50 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 11 уровней А2+: Хитрые глаголы с Dativ и Akkusativ
+// 7 уровней: damit vs um...zu (для детей ~9 лет, уровень A2)
 // В каждом: 4 правильных слова и 2 обманки
 const levels = [
   {
-    // 1: Ich vertraue dir vollkommen. (vertrauen + Dativ)
-    sequence: [C.yellow, C.red, C.blue, C.orange],
+    // 1: Ich gehe raus, um mit Freunden zu spielen. (Один субъект)
+    sequence: [C.blue, C.yellow, C.pink, C.red],
     snakeSpeed: baseSpeed,
-    description: ["vertraue", "Ich", "dir", "dich", "vollkommen.", "du"], 
+    description: ["spielen.", "damit", "um", "spiele.", "mit Freunden", "zu"], 
   },
   {
-    // 2: Die Kollegen unterstützen mich sehr. (unterstützen + Akkusativ)
-    sequence: [C.blue, C.yellow, C.purple, C.orange],
+    // 2: Ich rufe laut, damit du mich hörst. (Разные субъекты)
+    sequence: [C.orange, C.purple, C.blue, C.yellow],
     snakeSpeed: baseSpeed + 1,
-    description: ["mir", "unterstützen", "Die Kollegen", "mich", "sehr.", "ich"],
+    description: ["zu", "hörst.", "mich", "um", "damit", "du"],
   },
   {
-    // 3: Hörst du mir zu? (zuhören + Dativ)
-    sequence: [C.blue, C.red, C.orange, C.purple],
+    // 3: Er übt viel, um besser zu werden. (Один субъект)
+    sequence: [C.purple, C.pink, C.yellow, C.red],
     snakeSpeed: baseSpeed + 2,
-    description: ["du", "mich", "Hörst", "zu?", "mir", "mein"],
+    description: ["werden.", "damit", "wird.", "zu", "um", "besser"],
   },
   {
-    // 4: Das Geräusch stört ihn oft. (stören + Akkusativ)
-    sequence: [C.yellow, C.red, C.orange, C.purple],
+    // 4: Mama hilft mir, damit ich schneller fertig bin. (Разные субъекты)
+    sequence: [C.yellow, C.orange, C.purple, C.pink],
     snakeSpeed: baseSpeed + 3,
-    description: ["stört", "Das Geräusch", "ihm", "oft.", "ihn", "er"],
+    description: ["zu", "damit", "schneller", "ich", "fertig bin.", "um"],
   },
   {
-    // 5: Wir sind ihm begegnet. (begegnen + Dativ + sein)
-    sequence: [C.purple, C.red, C.blue, C.orange],
+    // 5: Wir rennen, um den Bus zu bekommen. (Один субъект)
+    sequence: [C.pink, C.orange, C.red, C.blue],
     snakeSpeed: baseSpeed + 4,
-    description: ["sind", "ihn", "ihm", "Wir", "begegnet.", "er"],
+    description: ["bekommen.", "den Bus", "damit", "zu", "wir bekommen.", "um"],
   },
   {
-    // 6: Wir gratulieren ihr herzlich. (gratulieren + Dativ)
-    sequence: [C.red, C.blue, C.orange, C.purple],
+    // 6: Papa gibt mir Geld, damit ich Eis kaufe. (Разные субъекты)
+    sequence: [C.blue, C.red, C.purple, C.yellow],
     snakeSpeed: baseSpeed + 5,
-    description: ["Wir", "sie", "gratulieren", "herzlich.", "ihr", "ihren"],
+    description: ["kaufe.", "ich", "zu", "damit", "um", "Eis"],
   },
   {
-    // 7: Denkst du an mich? (denken an + Akkusativ)
-    sequence: [C.yellow, C.purple, C.orange, C.red],
+    // 7: Sie liest Bücher, um schlau zu bleiben. (Один субъект)
+    sequence: [C.yellow, C.red, C.orange, C.purple],
     snakeSpeed: baseSpeed + 6,
-    description: ["mich?", "Denkst", "mir?", "du", "an", "ich?"],
-  },
-  {
-    // 8: Bitte verzeih mir das! (verzeihen + Dativ)
-    sequence: [C.blue, C.orange, C.red, C.purple],
-    snakeSpeed: baseSpeed + 7,
-    description: ["mir", "mich", "Bitte", "das!", "verzeih", "mein"],
-  },
-  {
-    // 9: Warum glaubst du ihm? (glauben + Dativ)
-    sequence: [C.red, C.blue, C.purple, C.orange],
-    snakeSpeed: baseSpeed + 8,
-    description: ["Warum", "ihn?", "glaubst", "du", "ihm?", "er?"],
-  },
-  {
-    // 10: Das Angebot überzeugt mich sofort. (überzeugen + Akkusativ)
-    sequence: [C.yellow, C.blue, C.red, C.orange],
-    snakeSpeed: baseSpeed + 9,
-    description: ["mich.", "Das Angebot", "überzeugt", "mir.", "sofort.", "ich."],
-  },
-  {
-    // 11: Der Chef widerspricht ihr oft. (widersprechen + Dativ)
-    sequence: [C.yellow, C.purple, C.red, C.orange],
-    snakeSpeed: baseSpeed + 10,
-    description: ["ihr.", "Der Chef", "sie.", "widerspricht", "oft.", "ihnen."],
+    description: ["bleibt.", "schlau", "um", "damit", "bleiben.", "zu"],
   }
 ];
 
@@ -140,7 +116,7 @@ let running = true;
 let currentLevel = 0;
 let correctSequence = [...levels[currentLevel].sequence];
 let pickedColors = [];
-let statusText = "A2+: Dativ oder Akkusativ? (Vorsicht: knifflige Verben!)";
+let statusText = "A2: damit oder um...zu? (чтобы)";
 let statusUntil = performance.now() + 3500;
 let fruitTypes = baseFruitTypes.map((item, i) => ({
   ...item,
@@ -357,9 +333,9 @@ function drawScene(now) {
 
   if (now < statusUntil && statusText) {
     ctx.fillStyle = "rgba(0, 0, 0, 0.42)";
-    roundRect(ctx, WORLD_W / 2 - 400, 32, 800, 56, 14, true, false);
+    roundRect(ctx, WORLD_W / 2 - 320, 32, 640, 56, 14, true, false);
     ctx.fillStyle = "#2341a3";
-    roundRect(ctx, WORLD_W / 2 - 404, 28, 800, 56, 14, true, false);
+    roundRect(ctx, WORLD_W / 2 - 324, 28, 640, 56, 14, true, false);
     ctx.fillStyle = "#ffffff";
     ctx.font = "800 28px Manrope";
     ctx.textAlign = "center";
