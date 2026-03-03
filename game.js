@@ -42,55 +42,58 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
+// 7 новых уровней: Präteritum (war/waren) vs Perfekt (haben/sein + Partizip II)
+// Сложность: A2 (чуть сложнее лексика и структуры)
+// В каждом: 4 правильных слова и 2 обманки
 const levels = [
   {
-    // 1: Ich war gestern im Kino. (Präteritum)
-    // Правильно: Ich (orange) -> war (blue) -> gestern (purple) -> im Kino. (red)
-    sequence: [C.orange, C.blue, C.purple, C.red],
-    snakeSpeed: baseSpeed,
-    description: ["im Kino.", "habe", "war", "gestern", "Ich", "bin"], 
-  },
-  {
-    // 2: Du bist nach Hause gegangen. (Perfekt)
-    // Правильно: Du (blue) -> bist (purple) -> nach Hause (pink) -> gegangen. (red)
-    sequence: [C.blue, C.purple, C.pink, C.red],
+    // 1: Meine Eltern waren gestern im Theater. (Präteritum)
+    // Правильно: Meine Eltern (orange) -> waren (yellow) -> gestern (red) -> im Theater. (purple)
+    sequence: [C.orange, C.yellow, C.red, C.purple],
     snakeSpeed: baseSpeed + 1,
-    description: ["gegangen.", "warst", "Du", "bist", "hast", "nach Hause"],
+    description: ["gestern", "waren", "sind", "im Theater.", "Meine Eltern", "haben"], 
   },
   {
-    // 3: Wir waren im Sommer am Meer. (Präteritum)
-    // Правильно: Wir (yellow) -> waren (pink) -> im Sommer (orange) -> am Meer. (blue)
-    sequence: [C.yellow, C.pink, C.orange, C.blue],
+    // 2: Wir sind nach Berlin gefahren. (Perfekt с глаголом движения)
+    // Правильно: Wir (blue) -> sind (pink) -> nach Berlin (orange) -> gefahren. (red)
+    sequence: [C.blue, C.pink, C.orange, C.red],
     snakeSpeed: baseSpeed + 2,
-    description: ["haben", "Wir", "am Meer.", "sind", "im Sommer", "waren"],
+    description: ["gefahren.", "waren", "Wir", "haben", "nach Berlin", "sind"],
   },
   {
-    // 4: Er hat seine Hausaufgaben gemacht. (Perfekt)
-    // Правильно: Er (blue) -> hat (pink) -> seine Hausaufgaben (purple) -> gemacht. (red)
-    sequence: [C.blue, C.pink, C.purple, C.red],
+    // 3: Mein Bruder hat sein Zimmer aufgeräumt. (Perfekt с отделяемой приставкой)
+    // Правильно: Mein Bruder (pink) -> hat (red) -> sein Zimmer (yellow) -> aufgeräumt. (purple)
+    sequence: [C.pink, C.red, C.yellow, C.purple],
     snakeSpeed: baseSpeed + 3,
-    description: ["gemacht.", "war", "Er", "seine Hausaufgaben", "ist", "hat"],
+    description: ["hat", "sein Zimmer", "war", "aufgeräumt.", "ist", "Mein Bruder"],
   },
   {
-    // 5: Wo warst du am Wochenende? (Präteritum)
-    // Правильно: Wo (yellow) -> warst (pink) -> du (purple) -> am Wochenende? (red)
-    sequence: [C.yellow, C.pink, C.purple, C.red],
+    // 4: Wo warst du so lange? (Präteritum - вопрос)
+    // Правильно: Wo (yellow) -> warst (blue) -> du (pink) -> so lange? (orange)
+    sequence: [C.yellow, C.blue, C.pink, C.orange],
     snakeSpeed: baseSpeed + 4,
-    description: ["am Wochenende?", "Wo", "hast", "du", "bist", "warst"],
+    description: ["hast", "Wo", "warst", "bist", "so lange?", "du"],
   },
   {
-    // 6: Ihr habt gestern Fußball gespielt. (Perfekt)
-    // Правильно: Ihr (blue) -> habt (orange) -> gestern (purple) -> gespielt. (red)
-    sequence: [C.blue, C.orange, C.purple, C.red],
+    // 5: Die Kinder haben den Kuchen gegessen. (Perfekt)
+    // Правильно: Die Kinder (yellow) -> haben (orange) -> den Kuchen (pink) -> gegessen. (red)
+    sequence: [C.yellow, C.orange, C.pink, C.red],
     snakeSpeed: baseSpeed + 5,
-    description: ["gespielt.", "wart", "Ihr", "gestern", "habt", "seid"],
+    description: ["gegessen.", "Die Kinder", "waren", "sind", "haben", "den Kuchen"],
   },
   {
-    // 7: Das Wetter war sehr schön. (Präteritum)
-    // Правильно: Das Wetter (pink) -> war (blue) -> sehr (purple) -> schön. (red)
-    sequence: [C.pink, C.blue, C.purple, C.red],
+    // 6: Der Film war wirklich spannend. (Präteritum)
+    // Правильно: Der Film (blue) -> war (orange) -> wirklich (purple) -> spannend. (red)
+    sequence: [C.blue, C.orange, C.purple, C.red],
     snakeSpeed: baseSpeed + 6,
-    description: ["schön.", "hat", "war", "sehr", "ist", "Das Wetter"],
+    description: ["spannend.", "hat", "Der Film", "wirklich", "war", "habe"],
+  },
+  {
+    // 7: Meine Freunde sind spät zurückgekommen. (Perfekt)
+    // Правильно: Meine Freunde (pink) -> sind (red) -> spät (purple) -> zurückgekommen. (yellow)
+    sequence: [C.pink, C.red, C.purple, C.yellow],
+    snakeSpeed: baseSpeed + 7,
+    description: ["sind", "zurückgekommen.", "haben", "spät", "waren", "Meine Freunde"],
   }
 ];
 
