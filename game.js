@@ -42,48 +42,53 @@ const baseFruitTypes = [
   { color: C.pink, effect: "shrink" },
 ];
 
-// 7 уровней: damit vs um...zu (для детей ~9 лет, уровень A2)
-// В каждом: 4 правильных слова и 2 обманки
 const levels = [
   {
-    // 1: Ich gehe raus, um mit Freunden zu spielen. (Один субъект)
-    sequence: [C.blue, C.yellow, C.pink, C.red],
+    // 1: Ich gehe raus, um mit Freunden zu spielen.
+    // Правильно: um (blue) -> mit Freunden (orange) -> zu (pink) -> spielen. (red)
+    sequence: [C.blue, C.orange, C.pink, C.red],
     snakeSpeed: baseSpeed,
     description: ["spielen.", "damit", "um", "spiele.", "mit Freunden", "zu"], 
   },
   {
-    // 2: Ich rufe laut, damit du mich hörst. (Разные субъекты)
-    sequence: [C.orange, C.purple, C.blue, C.yellow],
+    // 2: Ich rufe laut, damit du mich hörst.
+    // Правильно: damit (orange) -> du (pink) -> mich (blue) -> hörst. (yellow)
+    sequence: [C.orange, C.pink, C.blue, C.yellow],
     snakeSpeed: baseSpeed + 1,
     description: ["zu", "hörst.", "mich", "um", "damit", "du"],
   },
   {
-    // 3: Er übt viel, um besser zu werden. (Один субъект)
-    sequence: [C.purple, C.pink, C.yellow, C.red],
+    // 3: Er übt viel, um besser zu werden.
+    // Правильно: um (orange) -> besser (pink) -> zu (purple) -> werden. (red)
+    sequence: [C.orange, C.pink, C.purple, C.red],
     snakeSpeed: baseSpeed + 2,
     description: ["werden.", "damit", "wird.", "zu", "um", "besser"],
   },
   {
-    // 4: Mama hilft mir, damit ich schneller fertig bin. (Разные субъекты)
-    sequence: [C.yellow, C.orange, C.purple, C.pink],
+    // 4: Mama hilft mir, damit ich schneller fertig bin.
+    // Правильно: damit (yellow) -> ich (purple) -> schneller (blue) -> fertig bin. (orange)
+    sequence: [C.yellow, C.purple, C.blue, C.orange],
     snakeSpeed: baseSpeed + 3,
     description: ["zu", "damit", "schneller", "ich", "fertig bin.", "um"],
   },
   {
-    // 5: Wir rennen, um den Bus zu bekommen. (Один субъект)
-    sequence: [C.pink, C.orange, C.red, C.blue],
+    // 5: Wir rennen, um den Bus zu bekommen.
+    // Правильно: um (pink) -> den Bus (yellow) -> zu (purple) -> bekommen. (red)
+    sequence: [C.pink, C.yellow, C.purple, C.red],
     snakeSpeed: baseSpeed + 4,
     description: ["bekommen.", "den Bus", "damit", "zu", "wir bekommen.", "um"],
   },
   {
-    // 6: Papa gibt mir Geld, damit ich Eis kaufe. (Разные субъекты)
-    sequence: [C.blue, C.red, C.purple, C.yellow],
+    // 6: Papa gibt mir Geld, damit ich Eis kaufe.
+    // Правильно: damit (purple) -> ich (yellow) -> Eis (pink) -> kaufe. (red)
+    sequence: [C.purple, C.yellow, C.pink, C.red],
     snakeSpeed: baseSpeed + 5,
     description: ["kaufe.", "ich", "zu", "damit", "um", "Eis"],
   },
   {
-    // 7: Sie liest Bücher, um schlau zu bleiben. (Один субъект)
-    sequence: [C.yellow, C.red, C.orange, C.purple],
+    // 7: Sie liest Bücher, um schlau zu bleiben.
+    // Правильно: um (blue) -> schlau (yellow) -> zu (pink) -> bleiben. (orange)
+    sequence: [C.blue, C.yellow, C.pink, C.orange],
     snakeSpeed: baseSpeed + 6,
     description: ["bleibt.", "schlau", "um", "damit", "bleiben.", "zu"],
   }
