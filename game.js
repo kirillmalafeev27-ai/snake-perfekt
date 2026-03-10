@@ -50,77 +50,77 @@ const levels = [
     // Правильно: Das Buch, (red) -> das (blue) -> ich (orange) -> lese. (purple)
     sequence: [C.red, C.blue, C.orange, C.purple],
     snakeSpeed: baseSpeed,
-    description: ["Das Buch,", "dem", "das", "lese.", "ich", "der"],
+    description: ["Das ist das Buch,", "dem", "das", "lese.", "ich", "der"],
   },
   {
     // 2: Der Hund, der laut bellt. (Nominativ, masculine)
     // Правильно: Der Hund, (blue) -> der (orange) -> laut (red) -> bellt. (pink)
     sequence: [C.blue, C.orange, C.red, C.pink],
     snakeSpeed: baseSpeed + 1,
-    description: ["laut", "den", "Der Hund,", "das", "der", "bellt."],
+    description: ["laut", "den", "Das ist der Hund,", "das", "der", "bellt."],
   },
   {
     // 3: Die Pizza, die gut schmeckt. (Nominativ, feminine)
     // Правильно: Die Pizza, (yellow) -> die (red) -> gut (orange) -> schmeckt. (blue)
     sequence: [C.yellow, C.red, C.orange, C.blue],
     snakeSpeed: baseSpeed + 2,
-    description: ["die", "Die Pizza,", "schmeckt.", "der", "gut", "das"],
+    description: ["die", "Das ist die Pizza,", "schmeckt.", "der", "gut", "das"],
   },
   {
     // 4: Der Ball, den ich werfe. (Akkusativ, masculine)
     // Правильно: Der Ball, (pink) -> den (blue) -> ich (purple) -> werfe. (yellow)
     sequence: [C.pink, C.blue, C.purple, C.yellow],
     snakeSpeed: baseSpeed + 3,
-    description: ["der", "werfe.", "den", "ich", "dem", "Der Ball,"],
+    description: ["der", "werfe.", "den", "ich", "dem", "Das ist der Ball,"],
   },
   {
     // 5: Das Spiel, das Spaß macht. (Nominativ, neuter)
     // Правильно: Das Spiel, (purple) -> das (pink) -> Spaß (red) -> macht. (yellow)
     sequence: [C.purple, C.pink, C.red, C.yellow],
     snakeSpeed: baseSpeed + 4,
-    description: ["Spaß", "macht.", "die", "Das Spiel,", "den", "das"],
+    description: ["Spaß", "macht.", "die", "Das ist das Spiel,", "den", "das"],
   },
   {
     // 6: Ein Freund, der mir hilft. (Nominativ, masculine)
     // Правильно: Ein Freund, (red) -> der (purple) -> mir (pink) -> hilft. (blue)
     sequence: [C.red, C.purple, C.pink, C.blue],
     snakeSpeed: baseSpeed + 5,
-    description: ["Ein Freund,", "den", "hilft.", "der", "das", "mir"],
+    description: ["Das ist der Freund,", "den", "hilft.", "der", "das", "mir"],
   },
   {
     // 7: Die Katze, die wir mögen. (Akkusativ, feminine)
     // Правильно: Die Katze, (purple) -> die (blue) -> wir (red) -> mögen. (orange)
     sequence: [C.purple, C.blue, C.red, C.orange],
     snakeSpeed: baseSpeed + 6,
-    description: ["wir", "der", "die", "Die Katze,", "mögen.", "den"],
+    description: ["wir", "der", "die", "Das ist die Katze,", "mögen.", "den"],
   },
   {
     // 8: Der Film, den wir sehen. (Akkusativ, masculine)
     // Правильно: Der Film, (purple) -> den (yellow) -> wir (blue) -> sehen. (pink)
     sequence: [C.purple, C.yellow, C.blue, C.pink],
     snakeSpeed: baseSpeed + 7,
-    description: ["das", "den", "wir", "Der Film,", "der", "sehen."],
+    description: ["das", "den", "wir", "Das ist der Film,", "der", "sehen."],
   },
   {
     // 9: Das Mädchen, das dort steht. (Nominativ, neuter)
     // Правильно: Das Mädchen, (yellow) -> das (pink) -> dort (purple) -> steht. (red)
     sequence: [C.yellow, C.pink, C.purple, C.red],
     snakeSpeed: baseSpeed + 8,
-    description: ["steht.", "Das Mädchen,", "der", "dort", "die", "das"],
+    description: ["steht.", "Das ist das Mädchen,", "der", "dort", "die", "das"],
   },
   {
     // 10: Der Apfel, den ich esse. (Akkusativ, masculine)
     // Правильно: Der Apfel, (pink) -> den (purple) -> ich (red) -> esse. (blue)
     sequence: [C.pink, C.purple, C.red, C.blue],
     snakeSpeed: baseSpeed + 9,
-    description: ["ich", "der", "esse.", "den", "die", "Der Apfel,"],
+    description: ["ich", "der", "esse.", "den", "die", "Das ist der Apfel,"],
   },
   {
     // 11: Die Schuhe, die neu sind. (Nominativ, plural)
     // Правильно: Die Schuhe, (red) -> die (orange) -> neu (pink) -> sind. (blue)
     sequence: [C.red, C.orange, C.pink, C.blue],
     snakeSpeed: baseSpeed + 10,
-    description: ["Die Schuhe,", "das", "sind.", "den", "die", "neu"],
+    description: ["Das sind die Schuhe,", "das", "sind.", "den", "die", "neu"],
   }
 ];
 const fruitLimits = {
