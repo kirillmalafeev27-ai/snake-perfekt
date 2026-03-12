@@ -46,83 +46,73 @@ const baseFruitTypes = [
 // В каждом: 4 правильных слова и 2 обманки
 const levels = [
   {
-    // 1: Das Buch, das ich lese. (Akkusativ, neuter)
-    // Правильно: Das Buch, (red) -> das (blue) -> ich (orange) -> lese. (purple)
-    sequence: [C.red, C.blue, C.orange, C.purple],
+    // 1: Ich vertraue dir vollkommen. (vertrauen + Dativ)
+    sequence: [C.yellow, C.red, C.blue, C.orange],
     snakeSpeed: baseSpeed,
-    description: ["Das ist das Buch,", "dem", "das", "lese.", "ich", "der"],
+    description: ["vertraue", "Ich", "dir", "dich", "vollkommen.", "du"], 
   },
   {
-    // 2: Der Hund, der laut bellt. (Nominativ, masculine)
-    // Правильно: Der Hund, (blue) -> der (orange) -> laut (red) -> bellt. (pink)
-    sequence: [C.blue, C.orange, C.red, C.pink],
+    // 2: Die Kollegen unterstützen mich sehr. (unterstützen + Akkusativ)
+    sequence: [C.blue, C.yellow, C.purple, C.orange],
     snakeSpeed: baseSpeed + 1,
-    description: ["laut", "den", "Das ist der Hund,", "das", "der", "bellt."],
+    description: ["mir", "unterstützen", "Die Kollegen", "mich", "sehr.", "ich"],
   },
   {
-    // 3: Die Pizza, die gut schmeckt. (Nominativ, feminine)
-    // Правильно: Die Pizza, (yellow) -> die (red) -> gut (orange) -> schmeckt. (blue)
-    sequence: [C.yellow, C.red, C.orange, C.blue],
+    // 3: Hörst du mir zu? (zuhören + Dativ)
+    sequence: [C.blue, C.red, C.orange, C.purple],
     snakeSpeed: baseSpeed + 2,
-    description: ["die", "Das ist die Pizza,", "schmeckt.", "der", "gut", "das"],
+    description: ["du", "mich", "Hörst", "zu?", "mir", "mein"],
   },
   {
-    // 4: Der Ball, den ich werfe. (Akkusativ, masculine)
-    // Правильно: Der Ball, (pink) -> den (blue) -> ich (purple) -> werfe. (yellow)
-    sequence: [C.pink, C.blue, C.purple, C.yellow],
+    // 4: Das Geräusch stört ihn oft. (stören + Akkusativ)
+    sequence: [C.yellow, C.red, C.orange, C.purple],
     snakeSpeed: baseSpeed + 3,
-    description: ["der", "werfe.", "den", "ich", "dem", "Das ist der Ball,"],
+    description: ["stört", "Das Geräusch", "ihm", "oft.", "ihn", "er"],
   },
   {
-    // 5: Das Spiel, das Spaß macht. (Nominativ, neuter)
-    // Правильно: Das Spiel, (purple) -> das (pink) -> Spaß (red) -> macht. (yellow)
-    sequence: [C.purple, C.pink, C.red, C.yellow],
+    // 5: Wir sind ihm begegnet. (begegnen + Dativ + sein)
+    sequence: [C.purple, C.red, C.blue, C.orange],
     snakeSpeed: baseSpeed + 4,
-    description: ["Spaß", "macht.", "die", "Das ist das Spiel,", "den", "das"],
+    description: ["sind", "ihn", "ihm", "Wir", "begegnet.", "er"],
   },
   {
-    // 6: Ein Freund, der mir hilft. (Nominativ, masculine)
-    // Правильно: Ein Freund, (red) -> der (purple) -> mir (pink) -> hilft. (blue)
-    sequence: [C.red, C.purple, C.pink, C.blue],
+    // 6: Wir gratulieren ihr herzlich. (gratulieren + Dativ)
+    sequence: [C.red, C.blue, C.orange, C.purple],
     snakeSpeed: baseSpeed + 5,
-    description: ["Das ist der Freund,", "den", "hilft.", "der", "das", "mir"],
+    description: ["Wir", "sie", "gratulieren", "herzlich.", "ihr", "ihren"],
   },
   {
-    // 7: Die Katze, die wir mögen. (Akkusativ, feminine)
-    // Правильно: Die Katze, (purple) -> die (blue) -> wir (red) -> mögen. (orange)
-    sequence: [C.purple, C.blue, C.red, C.orange],
+    // 7: Denkst du an mich? (denken an + Akkusativ)
+    sequence: [C.yellow, C.purple, C.orange, C.red],
     snakeSpeed: baseSpeed + 6,
-    description: ["wir", "der", "die", "Das ist die Katze,", "mögen.", "den"],
+    description: ["mich?", "Denkst", "mir?", "du", "an", "ich?"],
   },
   {
-    // 8: Der Film, den wir sehen. (Akkusativ, masculine)
-    // Правильно: Der Film, (purple) -> den (yellow) -> wir (blue) -> sehen. (pink)
-    sequence: [C.purple, C.yellow, C.blue, C.pink],
+    // 8: Bitte verzeih mir das! (verzeihen + Dativ)
+    sequence: [C.blue, C.orange, C.red, C.purple],
     snakeSpeed: baseSpeed + 7,
-    description: ["das", "den", "wir", "Das ist der Film,", "der", "sehen."],
+    description: ["mir", "mich", "Bitte", "das!", "verzeih", "mein"],
   },
   {
-    // 9: Das Mädchen, das dort steht. (Nominativ, neuter)
-    // Правильно: Das Mädchen, (yellow) -> das (pink) -> dort (purple) -> steht. (red)
-    sequence: [C.yellow, C.pink, C.purple, C.red],
+    // 9: Warum glaubst du ihm? (glauben + Dativ)
+    sequence: [C.red, C.blue, C.purple, C.orange],
     snakeSpeed: baseSpeed + 8,
-    description: ["steht.", "Das ist das Mädchen,", "der", "dort", "die", "das"],
+    description: ["Warum", "ihn?", "glaubst", "du", "ihm?", "er?"],
   },
   {
-    // 10: Der Apfel, den ich esse. (Akkusativ, masculine)
-    // Правильно: Der Apfel, (pink) -> den (purple) -> ich (red) -> esse. (blue)
-    sequence: [C.pink, C.purple, C.red, C.blue],
+    // 10: Das Angebot überzeugt mich sofort. (überzeugen + Akkusativ)
+    sequence: [C.yellow, C.blue, C.red, C.orange],
     snakeSpeed: baseSpeed + 9,
-    description: ["ich", "der", "esse.", "den", "die", "Das ist der Apfel,"],
+    description: ["mich.", "Das Angebot", "überzeugt", "mir.", "sofort.", "ich."],
   },
   {
-    // 11: Die Schuhe, die neu sind. (Nominativ, plural)
-    // Правильно: Die Schuhe, (red) -> die (orange) -> neu (pink) -> sind. (blue)
-    sequence: [C.red, C.orange, C.pink, C.blue],
+    // 11: Der Chef widerspricht ihr oft. (widersprechen + Dativ)
+    sequence: [C.yellow, C.purple, C.red, C.orange],
     snakeSpeed: baseSpeed + 10,
-    description: ["Das sind die Schuhe,", "das", "sind.", "den", "die", "neu"],
+    description: ["ihr.", "Der Chef", "sie.", "widerspricht", "oft.", "ihnen."],
   }
 ];
+
 const fruitLimits = {
   grow: 1,
   speed_up: 1,
@@ -760,4 +750,4 @@ function initGame() {
   requestAnimationFrame(frame);
 }
 
-initGame();initGame();
+initGame();
