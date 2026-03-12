@@ -46,70 +46,81 @@ const baseFruitTypes = [
 // В каждом: 4 правильных слова и 2 обманки
 const levels = [
   {
-    // 1: Ich vertraue dir vollkommen. (vertrauen + Dativ)
-    sequence: [C.yellow, C.red, C.blue, C.orange],
+    // 1: Ich versuche, diese Aufgabe allein zu machen. (versuchen + zu)
+    // Правильно: Ich versuche, (orange) -> diese Aufgabe (yellow) -> allein (blue) -> zu machen. (purple)
+    sequence: [C.orange, C.yellow, C.blue, C.purple],
     snakeSpeed: baseSpeed,
-    description: ["vertraue", "Ich", "dir", "dich", "vollkommen.", "du"], 
+    description: ["machen.", "diese Aufgabe", "allein", "zu machen.", "Ich versuche,", "gemacht."],
   },
   {
-    // 2: Die Kollegen unterstützen mich sehr. (unterstützen + Akkusativ)
-    sequence: [C.blue, C.yellow, C.purple, C.orange],
+    // 2: Wir wollen am Wochenende ins Kino gehen. (Modalverb -> ohne zu)
+    // Правильно: Wir wollen (blue) -> am Wochenende (pink) -> ins Kino (red) -> gehen. (orange)
+    sequence: [C.blue, C.pink, C.red, C.orange],
     snakeSpeed: baseSpeed + 1,
-    description: ["mir", "unterstützen", "Die Kollegen", "mich", "sehr.", "ich"],
+    description: ["ins Kino", "zu gehen.", "Wir wollen", "gegangen.", "gehen.", "am Wochenende"],
   },
   {
-    // 3: Hörst du mir zu? (zuhören + Dativ)
-    sequence: [C.blue, C.red, C.orange, C.purple],
+    // 3: Hast du Lust, heute ein Buch zu lesen? (Lust haben + zu)
+    // Правильно: Hast du Lust, (purple) -> heute (purple - wait, see index 3) -> ein Buch (pink) -> zu lesen? (blue)
+    sequence: [C.yellow, C.purple, C.pink, C.blue],
     snakeSpeed: baseSpeed + 2,
-    description: ["du", "mich", "Hörst", "zu?", "mir", "mein"],
+    description: ["lesen?", "Hast du Lust,", "zu lesen?", "heute", "gelesen?", "ein Buch"],
   },
   {
-    // 4: Das Geräusch stört ihn oft. (stören + Akkusativ)
-    sequence: [C.yellow, C.red, C.orange, C.purple],
+    // 4: Meine Freundin kann sehr gut tanzen. (Modalverb -> ohne zu)
+    // Правильно: Meine Freundin (blue) -> kann (purple) -> sehr gut (pink) -> tanzen. (red)
+    sequence: [C.blue, C.purple, C.pink, C.red],
     snakeSpeed: baseSpeed + 3,
-    description: ["stört", "Das Geräusch", "ihm", "oft.", "ihn", "er"],
+    description: ["tanzen.", "zu tanzen.", "Meine Freundin", "kann", "getanzt.", "sehr gut"],
   },
   {
-    // 5: Wir sind ihm begegnet. (begegnen + Dativ + sein)
-    sequence: [C.purple, C.red, C.blue, C.orange],
-    snakeSpeed: baseSpeed + 4,
-    description: ["sind", "ihn", "ihm", "Wir", "begegnet.", "er"],
-  },
-  {
-    // 6: Wir gratulieren ihr herzlich. (gratulieren + Dativ)
-    sequence: [C.red, C.blue, C.orange, C.purple],
-    snakeSpeed: baseSpeed + 5,
-    description: ["Wir", "sie", "gratulieren", "herzlich.", "ihr", "ihren"],
-  },
-  {
-    // 7: Denkst du an mich? (denken an + Akkusativ)
+    // 5: Es ist wichtig, jeden Tag Vokabeln zu lernen. (Es ist wichtig + zu)
+    // Правильно: Es ist wichtig, (yellow) -> jeden Tag (purple) -> Vokabeln (orange) -> zu lernen. (red)
     sequence: [C.yellow, C.purple, C.orange, C.red],
+    snakeSpeed: baseSpeed + 4,
+    description: ["zu lernen.", "Es ist wichtig,", "lernen.", "jeden Tag", "Vokabeln", "gelernt."],
+  },
+  {
+    // 6: Wir gehen nach der Schule oft schwimmen. (gehen + ohne zu)
+    // Правильно: Wir gehen (purple) -> nach der Schule (pink) -> oft (yellow) -> schwimmen. (orange)
+    sequence: [C.purple, C.pink, C.yellow, C.orange],
+    snakeSpeed: baseSpeed + 5,
+    description: ["zu schwimmen.", "oft", "geschwommen.", "Wir gehen", "schwimmen.", "nach der Schule"],
+  },
+  {
+    // 7: Vergiss nicht, deine Hausaufgaben immer zu machen! (vergessen + zu)
+    // Правильно: Vergiss nicht, (purple) -> deine Hausaufgaben (yellow) -> immer (pink) -> zu machen! (blue)
+    sequence: [C.purple, C.yellow, C.pink, C.blue],
     snakeSpeed: baseSpeed + 6,
-    description: ["mich?", "Denkst", "mir?", "du", "an", "ich?"],
+    description: ["machen!", "deine Hausaufgaben", "zu machen!", "Vergiss nicht,", "gemacht!", "immer"],
   },
   {
-    // 8: Bitte verzeih mir das! (verzeihen + Dativ)
-    sequence: [C.blue, C.orange, C.red, C.purple],
+    // 8: Du musst dein Zimmer heute aufräumen. (Modalverb -> ohne zu)
+    // Правильно: Du musst (purple) -> dein Zimmer (orange) -> heute (red) -> aufräumen. (yellow)
+    sequence: [C.purple, C.orange, C.red, C.yellow],
     snakeSpeed: baseSpeed + 7,
-    description: ["mir", "mich", "Bitte", "das!", "verzeih", "mein"],
+    description: ["heute", "aufräumen.", "aufzuräumen.", "Du musst", "dein Zimmer", "aufgeräumt."],
   },
   {
-    // 9: Warum glaubst du ihm? (glauben + Dativ)
-    sequence: [C.red, C.blue, C.purple, C.orange],
+    // 9: Ich habe vor, im Sommer nach Spanien zu fliegen. (vorhaben + zu)
+    // Правильно: Ich habe vor, (yellow) -> im Sommer (red) -> nach Spanien (pink) -> zu fliegen. (purple)
+    sequence: [C.yellow, C.red, C.pink, C.purple],
     snakeSpeed: baseSpeed + 8,
-    description: ["Warum", "ihn?", "glaubst", "du", "ihm?", "er?"],
+    description: ["im Sommer", "Ich habe vor,", "fliegen.", "zu fliegen.", "geflogen.", "nach Spanien"],
   },
   {
-    // 10: Das Angebot überzeugt mich sofort. (überzeugen + Akkusativ)
-    sequence: [C.yellow, C.blue, C.red, C.orange],
+    // 10: Am Sonntag bleiben wir zu Hause schlafen. (bleiben + ohne zu)
+    // Правильно: Am Sonntag (orange) -> bleiben wir (pink) -> zu Hause (blue) -> schlafen. (red)
+    sequence: [C.orange, C.pink, C.blue, C.red],
     snakeSpeed: baseSpeed + 9,
-    description: ["mich.", "Das Angebot", "überzeugt", "mir.", "sofort.", "ich."],
+    description: ["schlafen.", "zu schlafen.", "zu Hause", "geschlafen.", "Am Sonntag", "bleiben wir"],
   },
   {
-    // 11: Der Chef widerspricht ihr oft. (widersprechen + Dativ)
-    sequence: [C.yellow, C.purple, C.red, C.orange],
+    // 11: Ich habe Angst, den Test morgen zu schreiben. (Angst haben + zu)
+    // Правильно: Ich habe Angst, (pink) -> den Test (yellow) -> morgen (blue) -> zu schreiben. (purple)
+    sequence: [C.pink, C.yellow, C.blue, C.purple],
     snakeSpeed: baseSpeed + 10,
-    description: ["ihr.", "Der Chef", "sie.", "widerspricht", "oft.", "ihnen."],
+    description: ["geschrieben.", "den Test", "morgen", "zu schreiben.", "schreiben.", "Ich habe Angst,"],
   }
 ];
 
