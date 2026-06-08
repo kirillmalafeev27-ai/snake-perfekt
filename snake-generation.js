@@ -48,52 +48,52 @@ const THEMES = [
 
 const FALLBACK_LEVELS = {
   alltag: [
-    ['Heute kaufe ich frisches Brot.', ['Heute', 'kaufe ich', 'frisches', 'Brot.'], ['morgen', 'liest du'], 'Сегодня я покупаю свежий хлеб.'],
-    ['Am Morgen trinke ich Kaffee.', ['Am Morgen', 'trinke', 'ich', 'Kaffee.'], ['am Abend', 'kauft'], 'Утром я пью кофе.'],
-    ['Wir fahren mit dem Bus.', ['Wir', 'fahren', 'mit dem', 'Bus.'], ['Zug', 'geht'], 'Мы едем на автобусе.'],
-    ['Meine Schwester arbeitet heute lange.', ['Meine Schwester', 'arbeitet', 'heute', 'lange.'], ['kurz', 'spielen'], 'Моя сестра сегодня долго работает.'],
-    ['Nachmittags treffe ich meine Freunde.', ['Nachmittags', 'treffe ich', 'meine', 'Freunde.'], ['Familie', 'morgens'], 'После обеда я встречаюсь с друзьями.'],
-    ['Der Kurs beginnt um neun.', ['Der Kurs', 'beginnt', 'um', 'neun.'], ['endet', 'acht'], 'Курс начинается в девять.'],
-    ['Ich brauche einen neuen Termin.', ['Ich', 'brauche', 'einen neuen', 'Termin.'], ['keinen', 'finde'], 'Мне нужна новая запись.'],
-    ['Am Abend kochen wir zusammen.', ['Am Abend', 'kochen', 'wir', 'zusammen.'], ['allein', 'lernt'], 'Вечером мы готовим вместе.'],
-    ['Mein Handy liegt auf dem Tisch.', ['Mein Handy', 'liegt', 'auf dem', 'Tisch.'], ['unter den', 'Schlüssel'], 'Мой телефон лежит на столе.'],
-    ['Sonntags schlafe ich etwas länger.', ['Sonntags', 'schlafe ich', 'etwas', 'länger.'], ['Montags', 'früher'], 'По воскресеньям я сплю немного дольше.'],
+    ['Ich esse ein Brot.', ['Ich', 'esse', 'ein', 'Brot.'], ['trinke', 'einen Apfel'], 'Я ем хлеб.'],
+    ['Du trinkst viel Wasser.', ['Du', 'trinkst', 'viel', 'Wasser.'], ['isst', 'Milch'], 'Ты пьёшь много воды.'],
+    ['Wir gehen zur Schule.', ['Wir', 'gehen', 'zur', 'Schule.'], ['geht', 'nach Hause'], 'Мы идём в школу.'],
+    ['Papa liest ein Buch.', ['Papa', 'liest', 'ein', 'Buch.'], ['kocht', 'eine Zeitung'], 'Папа читает книгу.'],
+    ['Lena malt ein Bild.', ['Lena', 'malt', 'ein', 'Bild.'], ['schreibt', 'ein Lied'], 'Лена рисует картинку.'],
+    ['Der Hund schläft im Haus.', ['Der Hund', 'schläft', 'im', 'Haus.'], ['läuft', 'in der Tasche'], 'Собака спит в доме.'],
+    ['Ich spiele im Zimmer.', ['Ich', 'spiele', 'im', 'Zimmer.'], ['schlafe', 'auf dem Tisch'], 'Я играю в комнате.'],
+    ['Mama kocht heute Suppe.', ['Mama', 'kocht', 'heute', 'Suppe.'], ['liest', 'morgen'], 'Мама сегодня готовит суп.'],
+    ['Wir machen die Hausaufgabe.', ['Wir', 'machen', 'die', 'Hausaufgabe.'], ['macht', 'das Spiel'], 'Мы делаем домашнее задание.'],
+    ['Am Abend bin ich müde.', ['Am Abend', 'bin', 'ich', 'müde.'], ['bist', 'lustig'], 'Вечером я устал.'],
   ],
   'was-ist-das': [
-    ['Das ist ein roter Ordner.', ['Das ist', 'ein', 'roter', 'Ordner.'], ['eine Lampe', 'keinen'], 'Это красная папка.'],
-    ['Dort liegt eine gelbe Schere.', ['Dort', 'liegt', 'eine gelbe', 'Schere.'], ['steht', 'Bleistift'], 'Там лежат желтые ножницы.'],
-    ['Im Büro steht ein Drucker.', ['Im Büro', 'steht', 'ein', 'Drucker.'], ['liegt', 'Tasche'], 'В офисе стоит принтер.'],
-    ['Das sind meine neuen Hefte.', ['Das sind', 'meine', 'neuen', 'Hefte.'], ['mein', 'alt'], 'Это мои новые тетради.'],
-    ['Auf dem Tisch liegt dein Handy.', ['Auf dem Tisch', 'liegt', 'dein', 'Handy.'], ['hängt', 'Laptop'], 'На столе лежит твой телефон.'],
-    ['Der schwarze Stift gehört mir.', ['Der schwarze', 'Stift', 'gehört', 'mir.'], ['blaues', 'dir'], 'Черная ручка принадлежит мне.'],
-    ['Ist das dein roter Rucksack?', ['Ist das', 'dein', 'roter', 'Rucksack?'], ['meine', 'Tafel'], 'Это твой красный рюкзак?'],
-    ['Wir brauchen einen großen Bildschirm.', ['Wir brauchen', 'einen', 'großen', 'Bildschirm.'], ['kleine', 'Tastatur'], 'Нам нужен большой экран.'],
-    ['Die Flasche steht neben dem Laptop.', ['Die Flasche', 'steht', 'neben dem', 'Laptop.'], ['unter den', 'Papier'], 'Бутылка стоит рядом с ноутбуком.'],
-    ['Diese Tasse ist nicht blau.', ['Diese Tasse', 'ist', 'nicht', 'blau.'], ['kein', 'grünen'], 'Эта чашка не синяя.'],
+    ['Das ist ein Stift.', ['Das', 'ist', 'ein', 'Stift.'], ['eine', 'Tasche'], 'Это ручка.'],
+    ['Das ist eine Tasche.', ['Das', 'ist', 'eine', 'Tasche.'], ['ein', 'Buch'], 'Это сумка.'],
+    ['Der Ball ist rot.', ['Der', 'Ball', 'ist', 'rot.'], ['die', 'blau'], 'Мяч красный.'],
+    ['Die Lampe ist groß.', ['Die', 'Lampe', 'ist', 'groß.'], ['der', 'klein'], 'Лампа большая.'],
+    ['Mein Heft ist blau.', ['Mein', 'Heft', 'ist', 'blau.'], ['meine', 'rot'], 'Моя тетрадь синяя.'],
+    ['Ist das dein Buch?', ['Ist', 'das', 'dein', 'Buch?'], ['meine', 'Stuhl'], 'Это твоя книга?'],
+    ['Das sind drei Stifte.', ['Das', 'sind', 'drei', 'Stifte.'], ['ist', 'zwei'], 'Это три ручки.'],
+    ['Hier liegt ein Radiergummi.', ['Hier', 'liegt', 'ein', 'Radiergummi.'], ['steht', 'eine Schere'], 'Здесь лежит ластик.'],
+    ['Die Schere ist klein.', ['Die', 'Schere', 'ist', 'klein.'], ['der', 'groß'], 'Ножницы маленькие.'],
+    ['Das ist kein Handy.', ['Das', 'ist', 'kein', 'Handy.'], ['eine', 'Computer'], 'Это не телефон.'],
   ],
   shoppen: [
-    ['Ich möchte diese Jacke kaufen.', ['Ich möchte', 'diese', 'Jacke', 'kaufen.'], ['keine', 'verkaufen'], 'Я хотел бы купить эту куртку.'],
-    ['Der Pullover gefällt mir nicht.', ['Der Pullover', 'gefällt', 'mir', 'nicht.'], ['mich', 'doch'], 'Этот свитер мне не нравится.'],
-    ['Habt ihr auch schwarze Schuhe?', ['Habt ihr', 'auch', 'schwarze', 'Schuhe?'], ['keinen', 'Jacke'], 'У вас есть также черные туфли?'],
-    ['Wir suchen einen günstigen Laptop.', ['Wir suchen', 'einen', 'günstigen', 'Laptop.'], ['teure', 'findet'], 'Мы ищем недорогой ноутбук.'],
-    ['Kann ich mit Karte zahlen?', ['Kann ich', 'mit', 'Karte', 'zahlen?'], ['Bargeld', 'kaufen'], 'Можно заплатить картой?'],
-    ['Im Laden gibt es heute Sonderangebote.', ['Im Laden', 'gibt es', 'heute', 'Sonderangebote.'], ['Markt', 'morgen'], 'Сегодня в магазине есть специальные предложения.'],
-    ['Die rote Tasche ist zu teuer.', ['Die rote', 'Tasche', 'ist', 'zu teuer.'], ['billig', 'Schuhe'], 'Красная сумка слишком дорогая.'],
-    ['Wo finde ich die Kasse?', ['Wo', 'finde ich', 'die', 'Kasse?'], ['wann', 'Regal'], 'Где я найду кассу?'],
-    ['Nein, ich brauche keine Socken.', ['Nein, ich', 'brauche', 'keine', 'Socken.'], ['einen', 'nehme'], 'Нет, мне не нужны носки.'],
-    ['Doch, dieses Handy ist praktisch.', ['Doch, dieses', 'Handy', 'ist', 'praktisch.'], ['kein', 'teuren'], 'Нет же, этот телефон практичный.'],
+    ['Ich kaufe einen Apfel.', ['Ich', 'kaufe', 'einen', 'Apfel.'], ['esse', 'eine Banane'], 'Я покупаю яблоко.'],
+    ['Du möchtest eine Banane.', ['Du', 'möchtest', 'eine', 'Banane.'], ['möchte', 'ein Brot'], 'Ты хочешь банан.'],
+    ['Die Jacke ist rot.', ['Die', 'Jacke', 'ist', 'rot.'], ['der', 'blau'], 'Куртка красная.'],
+    ['Wir kaufen zwei Hefte.', ['Wir', 'kaufen', 'zwei', 'Hefte.'], ['kauft', 'drei Stifte'], 'Мы покупаем две тетради.'],
+    ['Der Ball kostet drei Euro.', ['Der Ball', 'kostet', 'drei', 'Euro.'], ['kosten', 'zwei'], 'Мяч стоит три евро.'],
+    ['Ich nehme das Brot.', ['Ich', 'nehme', 'das', 'Brot.'], ['nimmst', 'die Milch'], 'Я беру хлеб.'],
+    ['Mama kauft heute Milch.', ['Mama', 'kauft', 'heute', 'Milch.'], ['kaufen', 'morgen'], 'Мама сегодня покупает молоко.'],
+    ['Ich brauche neue Schuhe.', ['Ich', 'brauche', 'neue', 'Schuhe.'], ['brauchst', 'alte Socken'], 'Мне нужны новые ботинки.'],
+    ['Die Tasche ist schön.', ['Die', 'Tasche', 'ist', 'schön.'], ['der', 'klein'], 'Сумка красивая.'],
+    ['Ich zahle mit Geld.', ['Ich', 'zahle', 'mit', 'Geld.'], ['kauft', 'ohne'], 'Я плачу деньгами.'],
   ],
   freizeit: [
-    ['Am Montag gehe ich tanzen.', ['Am Montag', 'gehe', 'ich', 'tanzen.'], ['wandert', 'im'], 'В понедельник я иду танцевать.'],
-    ['Im Sommer wandern wir oft.', ['Im Sommer', 'wandern', 'wir', 'oft.'], ['am Winter', 'fährt'], 'Летом мы часто ходим в походы.'],
-    ['Meine Freundin fährt gern Rad.', ['Meine Freundin', 'fährt', 'gern', 'Rad.'], ['fahrt', 'Fußball'], 'Моя подруга любит кататься на велосипеде.'],
-    ['Nach der Arbeit sehe ich gern fern.', ['Nach der Arbeit', 'sehe ich', 'gern', 'fern.'], ['liest', 'aus'], 'После работы я люблю смотреть телевизор.'],
-    ['Am Wochenende treffen wir Freunde.', ['Am Wochenende', 'treffen', 'wir', 'Freunde.'], ['trifft', 'Montag'], 'На выходных мы встречаемся с друзьями.'],
-    ['Im Winter liest man mehr.', ['Im Winter', 'liest', 'man', 'mehr.'], ['am Sommer', 'lesen'], 'Зимой люди читают больше.'],
-    ['Jeden Mittwoch spiele ich Tennis.', ['Jeden Mittwoch', 'spiele', 'ich', 'Tennis.'], ['am', 'wandern'], 'Каждую среду я играю в теннис.'],
-    ['Im Herbst machen wir Ausflüge.', ['Im Herbst', 'machen', 'wir', 'Ausflüge.'], ['am Freitag', 'macht'], 'Осенью мы ездим на экскурсии.'],
-    ['Am Freitag hört er Musik.', ['Am Freitag', 'hört', 'er', 'Musik.'], ['hören', 'Filme'], 'В пятницу он слушает музыку.'],
-    ['Sonntags schlafe ich lange aus.', ['Sonntags', 'schlafe', 'ich lange', 'aus.'], ['stehe', 'fern'], 'По воскресеньям я долго сплю.'],
+    ['Ich spiele gern Fußball.', ['Ich', 'spiele', 'gern', 'Fußball.'], ['spielst', 'Tennis'], 'Я люблю играть в футбол.'],
+    ['Wir malen ein Bild.', ['Wir', 'malen', 'ein', 'Bild.'], ['malt', 'ein Buch'], 'Мы рисуем картинку.'],
+    ['Anna tanzt am Montag.', ['Anna', 'tanzt', 'am', 'Montag.'], ['tanzen', 'im Sommer'], 'Анна танцует в понедельник.'],
+    ['Du liest einen Comic.', ['Du', 'liest', 'einen', 'Comic.'], ['lese', 'ein Film'], 'Ты читаешь комикс.'],
+    ['Wir schwimmen im Sommer.', ['Wir', 'schwimmen', 'im', 'Sommer.'], ['schwimmt', 'am Winter'], 'Мы плаваем летом.'],
+    ['Ich fahre gern Rad.', ['Ich', 'fahre', 'gern', 'Rad.'], ['fährst', 'Auto'], 'Я люблю кататься на велосипеде.'],
+    ['Ben hört laute Musik.', ['Ben', 'hört', 'laute', 'Musik.'], ['höre', 'leiser'], 'Бен слушает громкую музыку.'],
+    ['Am Sonntag spiele ich draußen.', ['Am Sonntag', 'spiele', 'ich', 'draußen.'], ['spielst', 'drinnen'], 'В воскресенье я играю на улице.'],
+    ['Wir gehen in den Park.', ['Wir', 'gehen', 'in den', 'Park.'], ['geht', 'nach Hause'], 'Мы идём в парк.'],
+    ['Ich sehe einen Film.', ['Ich', 'sehe', 'einen', 'Film.'], ['siehst', 'ein Lied'], 'Я смотрю фильм.'],
   ],
 };
 
@@ -143,16 +143,16 @@ function themeFor(themeId) {
   return THEMES.find((theme) => theme.id === themeId) || THEMES[0];
 }
 
-function fallbackPack(themeId, mode) {
+function fallbackPack(themeId, _mode) {
   const source = FALLBACK_LEVELS[themeId] || FALLBACK_LEVELS.alltag;
   return source.map(([sentence, compactChunks, distractors, hint], index) => {
-    const chunks = mode === 'full' ? chunkSentence(sentence) : compactChunks;
+    const chunks = compactChunks;
     return {
       id: index + 1,
       sentence,
       hint,
       chunks,
-      distractors: distractors.slice(0, Math.max(0, 6 - chunks.length)),
+      distractors: distractors.slice(0, 2),
     };
   });
 }
