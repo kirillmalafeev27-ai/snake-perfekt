@@ -92,6 +92,7 @@ let startTime = performance.now();
 let lastMoveTs = performance.now();
 let running = false;
 let transitioning = false;
+let resultAction = 'setup';
 let statusText = '';
 let statusUntil = 0;
 let correctSequence = [];
@@ -315,10 +316,31 @@ function startGame(pack) {
 function finishGame() {
   running = false;
   transitioning = false;
+  resultAction = 'setup';
   resultTitle.textContent = 'Все 10 уровней пройдены';
   resultText.textContent = `Тема «${currentTheme.title}» завершена. Можно собрать новый набор предложений.`;
+  resultBtn.textContent = 'Выбрать новую тему';
   resultOverlay.hidden = false;
   setStatus('Все уровни пройдены!', 4000);
+}
+
+function restartCurrentLevel() {
+  if (!levels.length) {
+    showSetup();
+    return;
+  }
+
+  const levelToLoad = clamp(currentLevel, 0, levels.length - 1);
+  resetSnake();
+  running = true;
+  paused = false;
+  transitioning = false;
+  setupOverlay.hidden = true;
+  resultOverlay.hidden = true;
+  gameShell.hidden = false;
+  pauseBtn.textContent = 'Пауза';
+  activateLevel(levelToLoad);
+  setStatus(`Уровень ${levelToLoad + 1} загружен заново.`, 2600);
 }
 
 function applyFruitEffect(effect) {
@@ -647,10 +669,15 @@ function snakeBounceAndWobble() {
 function loseLife(message) {
   lives -= 1;
   if (lives <= 0) {
+    const stoppedLevel = currentLevel;
     lives = 0;
     running = false;
+    paused = false;
+    transitioning = false;
+    resultAction = 'retry-level';
     resultTitle.textContent = 'Попробуй ещё раз';
-    resultText.textContent = `Тема «${currentTheme.title}». Можно выбрать тему и создать новый набор.`;
+    resultText.textContent = `Ты остановился на уровне ${stoppedLevel + 1}/${levels.length || 10}. Можно загрузить этот же уровень заново без создания нового набора.`;
+    resultBtn.textContent = `Повторить уровень ${stoppedLevel + 1}`;
     resultOverlay.hidden = false;
     setStatus('Игра окончена.', 3000);
   } else if (message) {
@@ -724,10 +751,12 @@ function togglePause() {
 
 function showSetup() {
   running = false;
+  resultAction = 'setup';
   setupOverlay.hidden = false;
   setupOverlay.scrollTop = 0;
   resultOverlay.hidden = true;
   gameShell.hidden = true;
+  resultBtn.textContent = 'Выбрать новую тему';
 }
 
 function bindControls() {
@@ -739,7 +768,10 @@ function bindControls() {
   pauseBtn.addEventListener('click', togglePause);
   resetSeqBtn.addEventListener('click', () => resetPickedSequence('Порядок сброшен.'));
   newGameBtn.addEventListener('click', showSetup);
-  resultBtn.addEventListener('click', showSetup);
+  resultBtn.addEventListener('click', () => {
+    if (resultAction === 'retry-level') restartCurrentLevel();
+    else showSetup();
+  });
   canvas.addEventListener('pointerdown', (event) => {
     const point = toWorldCoordinates(event);
     handleScreenClick(point.x, point.y);
