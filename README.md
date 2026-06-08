@@ -1,28 +1,21 @@
-# Snake Perfekt Web
+# Snake Perfekt
 
-Web version of the snake game with:
+German word-order Snake game with AI-generated level packs.
 
-- original fruit effects (`grow`, `speed_up`, `slow_down`, `extra_life`, `invincible`, `shrink`)
-- level sequence checks and level switching
-- pause and sequence reset
-- on-screen D-pad for phone users
-- two small on-screen speed buttons (`+` and `-`)
+- one selected lexical theme for all 10 levels
+- `compact` mode: four ordered fruit chunks and two distractors
+- `full` mode: the complete sentence split into up to six chunks
+- validated server-side generation with thematic fallback packs
+- keyboard, canvas tap, and on-screen D-pad controls
 
 ## Run locally
 
-1. Open terminal in `snake_web`.
-2. Run:
-
 ```bash
-python -m http.server 8000
+npm install
+npm start
 ```
 
-3. Open `http://localhost:8000` in browser.
+Open `http://localhost:3000`.
 
-## Share with students (public link)
-
-1. Push this folder to a GitHub repository.
-2. Enable GitHub Pages for the repository (branch: `main`, folder: `/snake_web` if needed).
-3. Send the generated Pages URL to students.
-
-Alternative: drag the `snake_web` folder into Netlify Drop and send the generated URL.
+Set `AITUNNEL_API_KEY` or `OPENAI_API_KEY` to generate fresh AI packs. Without
+an AI key, the game uses validated fallback packs for local testing.

@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snake Perfekt Web</title>
+    <title>Snake Perfekt</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,15 +13,24 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="app-shell">
+    <main id="gameShell" class="app-shell" hidden>
       <header class="top-bar">
-        <div class="badge">Snake Perfekt Web</div>
+        <div class="badge">Snake Perfekt</div>
         <div class="stats">
-          <span id="levelValue">Level 1/4</span>
-          <span id="livesValue">Lives 100</span>
-          <span id="seqValue">Sequence 0/6</span>
+          <span id="topicValue">Тема</span>
+          <span id="levelValue">Уровень 1/10</span>
+          <span id="livesValue">Жизни 5</span>
+          <span id="seqValue">Порядок 0/4</span>
         </div>
       </header>
+
+      <section class="task-card">
+        <div>
+          <div class="task-kicker">Собери предложение</div>
+          <div id="taskHint" class="task-hint">Подсказка появится здесь.</div>
+        </div>
+        <div id="sequenceChips" class="sequence-chips" aria-label="Собранная последовательность"></div>
+      </section>
 
       <section class="canvas-wrap">
         <canvas id="gameCanvas" width="1350" height="900"></canvas>
@@ -29,26 +38,76 @@
 
       <section class="controls-wrap">
         <div class="speed-box">
-          <button id="speedDown" class="mini-btn" type="button">-</button>
-          <div class="speed-label">Speed <strong id="speedValue">3</strong></div>
-          <button id="speedUp" class="mini-btn" type="button">+</button>
+          <button id="speedDown" class="mini-btn" type="button" aria-label="Уменьшить скорость">-</button>
+          <div class="speed-label">Скорость <strong id="speedValue">3</strong></div>
+          <button id="speedUp" class="mini-btn" type="button" aria-label="Увеличить скорость">+</button>
         </div>
 
-        <div class="dpad">
-          <button class="dpad-btn up" data-dir="UP" type="button">U</button>
-          <button class="dpad-btn left" data-dir="LEFT" type="button">L</button>
-          <button class="dpad-btn right" data-dir="RIGHT" type="button">R</button>
-          <button class="dpad-btn down" data-dir="DOWN" type="button">D</button>
+        <div class="dpad" aria-label="Управление змейкой">
+          <button class="dpad-btn up" data-dir="UP" type="button" aria-label="Вверх">В</button>
+          <button class="dpad-btn left" data-dir="LEFT" type="button" aria-label="Влево">Л</button>
+          <button class="dpad-btn right" data-dir="RIGHT" type="button" aria-label="Вправо">П</button>
+          <button class="dpad-btn down" data-dir="DOWN" type="button" aria-label="Вниз">Н</button>
         </div>
 
         <div class="action-row">
-          <button id="pauseBtn" class="action-btn" type="button">Pause</button>
-          <button id="resetSeqBtn" class="action-btn" type="button">Reset Sequence</button>
+          <button id="pauseBtn" class="action-btn" type="button">Пауза</button>
+          <button id="resetSeqBtn" class="action-btn" type="button">Сбросить порядок</button>
+          <button id="newGameBtn" class="action-btn subtle" type="button">Новая тема</button>
         </div>
 
-        <div id="statusMessage" class="status-msg">Collect fruits in the correct color order.</div>
+        <div id="statusMessage" class="status-msg">Собирай фрукты в правильном порядке.</div>
       </section>
     </main>
+
+    <section id="setupOverlay" class="overlay">
+      <form id="setupForm" class="setup-card">
+        <div class="setup-kicker">Deutsch lernen</div>
+        <h1>Snake Perfekt</h1>
+        <p class="setup-copy">
+          Выбери одну тему на всю игру. На каждом из 10 уровней собирай фрукты так,
+          чтобы немецкие фрагменты сложились в правильное предложение.
+        </p>
+
+        <div class="setup-grid">
+          <label class="field" for="themeSelect">
+            <span>Тема на 10 уровней</span>
+            <select id="themeSelect" name="theme">
+              <option value="alltag">Alltag</option>
+            </select>
+          </label>
+
+          <label class="field" for="languageLevel">
+            <span>Уровень немецкого</span>
+            <select id="languageLevel" name="level">
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="B1">B1</option>
+            </select>
+          </label>
+
+          <label class="field" for="modeSelect">
+            <span>Тип задания</span>
+            <select id="modeSelect" name="mode">
+              <option value="compact">4 фрукта + 2 дистрактора</option>
+              <option value="full">Всё предложение фрагментами</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="generationStatus" class="generation-status">Проверяю генератор…</div>
+        <button id="startBtn" class="start-btn" type="submit">Создать 10 уровней</button>
+      </form>
+    </section>
+
+    <section id="resultOverlay" class="overlay" hidden>
+      <div class="setup-card result-card">
+        <div class="setup-kicker">Готово</div>
+        <h2 id="resultTitle">Все уровни пройдены</h2>
+        <p id="resultText" class="setup-copy"></p>
+        <button id="resultBtn" class="start-btn" type="button">Выбрать новую тему</button>
+      </div>
+    </section>
 
     <script src="./game.js"></script>
   </body>
